@@ -131,6 +131,8 @@ install_requirements() {
 }
 
 install_dotfiles() {
+    echo "- Clone dotfiles repo"
+    rm -rf $DOTFILES
     git clone --recursive https://github.com/Yescafe/dotfiles.git $DOTFILES
 }
 
