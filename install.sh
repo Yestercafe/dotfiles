@@ -84,6 +84,7 @@ clean_dotfiles() {
     "
 
     backup_path="bak-$(date +%s)"
+    mkdir -p $DOTFILES/$backup_pathk
     for f in $files; do
         [ -f $HOME/$f ] && mv $HOME/$f $HOME/$backup_path/$f
     done
@@ -174,6 +175,7 @@ done_dotfiles() {
 main() {
     set_proxy
     reset_confirm
+    install_dotfiles
     install_requirements
     install_zinit
     done_dotfiles
