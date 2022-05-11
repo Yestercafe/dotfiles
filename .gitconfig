@@ -1,0 +1,19 @@
+[user]
+	name = Ivan Chien
+	email = qyc027@gmail.com
+[http]
+	proxy = 127.0.0.1:7890
+[https]
+	proxy = 127.0.0.1:7890
+[core]
+	gitproxy = git-proxy
+	autocrlf = input
+[socks]
+	proxy = 127.0.0.1:7890
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = false
