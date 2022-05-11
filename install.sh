@@ -66,8 +66,8 @@ install_package() {
 
 clean_dotfiles() {
     echo "- Clean files"
+    rm -rf $DOTFILES
     files="
-    .dotfiles
     .zinit
     .zshenv
     .zshrc
@@ -84,9 +84,11 @@ clean_dotfiles() {
     "
 
     backup_path="bak-$(date +%s)"
-    mkdir -p $DOTFILES/$backup_pathk
+    mkdir -p $DOTFILES/$backup_path
     for f in $files; do
-        [ -f $HOME/$f ] && mv $HOME/$f $HOME/$backup_path/$f
+        if [ -f $HOME/$f ] || [ -d $HOME/$f ] || [ -h $HOME/$f ]; then
+            mv $HOME/$f $DOTFILES/$backup_path/$f
+        fi
     done
 }
 
@@ -106,15 +108,6 @@ set_proxy() {
     https_proxy=http://127.0.0.1:$PROXY_PORT
     http_proxy=http://127.0.0.1:$PROXY_PORT
     all_proxy=socks5://127.0.0.1:$PROXY_PORT
-}
-
-reset_confirm() {
-    if [ -d $ZINIT_PATH ] || [ -d $TMUX_PATH ] || [ -d $VIM_PATH ]; then
-        promote_yn "Do you want to reset all configurations and continue?" "choice"
-        if [ $choice -eq $YES ]; then
-            clean_dotfiles
-        fi
-    fi
 }
 
 install_requirements() {
@@ -174,11 +167,24 @@ done_dotfiles() {
 
 main() {
     set_proxy
-    reset_confirm
-    install_dotfiles
-    install_requirements
-    install_zinit
-    done_dotfiles
+    if [ -d $ZINIT_PATH ] || [ -d $TMUX_PATH ] || [ -d $VIM_PATH ]; then
+        promote_yn "Do you want to reset all configurations and continue?" "choice"
+        if [ $choice -eq $YES ]; then
+            install_requirements
+            install_dotfiles
+            clean_dotfiles
+            install_zinit
+            done_dotfiles
+        else
+            exit
+        fi
+    else
+        install_requirements
+        install_dotfiles
+        clean_dotfiles
+        install_zinit
+        done_dotfiles
+    fi
 }
 
 main
