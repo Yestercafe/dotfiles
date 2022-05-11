@@ -39,10 +39,9 @@ zinit wait lucid for \
       OMZP::brew \
       OMZP::vscode \
       OMZP::iterm2 \
-      OMZP::macos \
       OMZP::dash
 
-zinit OMZT::steeef
+zinit snippet OMZT::steeef
 
 # functions
 mkcd() {
