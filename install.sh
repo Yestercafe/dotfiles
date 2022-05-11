@@ -66,7 +66,6 @@ install_package() {
 
 clean_dotfiles() {
     echo "- Clean files"
-    rm -rf $DOTFILES
     files="
     .zinit
     .zshenv
@@ -152,7 +151,7 @@ done_dotfiles() {
     fi
 
     PATH=$DOTFILES/cms-git-tools:$PATH
-    cp $DOTFILES/.gitconfig $HOME/.gitconfig
+    cp $DOTFILES/.gitconfig_macos $HOME/.gitconfig
 
     git clone --recursive https://github.com/Yescafe/vim.git $HOME/.vim
 
