@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+if [[ "$USER" != "root" ]]; then
+  echo "Please run as root user." >&2
+  exit -1
+fi
+
+pmset -a lidwake 1
+pmset -a autorestart 1
+pmset -a acwake 0
+systemsetup -setrestartfreeze on
+
+pmset -c displaysleep 30
+pmset -c sleep 120
+pmset -c disksleep 180
+pmset -c standby 0
+pmset -c autopoweroff 0
+pmset -c tcpkeepalive 1
+
+pmset -b displaysleep 5
+pmset -b sleep 20
+pmset -b disksleep 30
+pmset -b hibernatemode 3
+pmset -b standbydelayhigh 14400
+pmset -b standbydelaylow 7200
+pmset -b highstandbythreshold 75
+

@@ -1,0 +1,2 @@
+#!/bin/sh
+defaults write com.apple.dock tilesize -int $* && killall Dock
