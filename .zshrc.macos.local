@@ -51,6 +51,8 @@ alias condai="conda install"
 ## Typora
 alias typora="open -a typora"
 alias tpr=typora
+## macvim
+alias vv=mvim
 
 # iTerm2 shell integration
 if [[ -z $EMACS ]]; then

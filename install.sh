@@ -74,12 +74,13 @@ clean_dotfiles() {
     .gitconfig
     .vim
     .vimrc
+    .gvimrc
+    .ideavimrc
     .tmux
     .tmux.conf
     .tmux.conf.local
     .condarc
     .irbrc
-    .ideavimrc
     "
 
     backup_path="bak-$(date +%s)"
@@ -154,6 +155,8 @@ done_dotfiles() {
     cp $DOTFILES/.gitconfig_macos $HOME/.gitconfig
 
     git clone --recursive https://github.com/Yescafe/vim.git $HOME/.vim
+    ln -sf $DOTFILES/.gvimrc $HOME/.gvimrc
+    cp $DOTFILES/.ideavimrc $HOME/.ideavimrc
 
     git clone https://github.com/gpakosz/.tmux.git $TMUX_PATH
     ln -sf $TMUX_PATH/.tmux.conf $HOME/.tmux.conf
@@ -162,7 +165,6 @@ done_dotfiles() {
     ln -sf $DOTFILES/.condarc $HOME/.condarc
     ln -sf $DOTFILES/.irbrc $HOME/.irbrc
 
-    cp $DOTFILES/.ideavimrc $HOME/.ideavimrc
     echo "- Done!"
 }
 
