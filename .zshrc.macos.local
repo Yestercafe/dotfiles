@@ -38,6 +38,11 @@ alias lp4="clang++ -std=c++14"
 alias lp7="clang++ -std=c++17"
 alias lp2a="clang++ -std=c++2a"
 alias lp20="clang++ -std=c++20"   # LLVM12
+export LDFLAGS="-L/usr/local/lib"
+export CPPFLAGS="-I/usr/local/include"
+alias make_by_gcc="export CC=/usr/local/bin/gcc-11;export CXX=/usr/local/bin/g++-11;export CMAKE_C_COMPILER=/usr/local/bin/gcc-11;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-11"
+alias make_by_clang="export CC=/usr/bin/clang;export CXX=/usr/bin/clang++;export CMAKE_C_COMPILER=/usr/bin/local/clang;export CMAKE_CXX_COMPILER=/usr/bin/local/clang++"
+# proxy
 alias proxy_set="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890; curl ipinfo.io"
 alias proxy_unset="unset http_proxy; unset https_proxy; unset all_proxy; curl ipinfo.io"
 alias proxy_prefix="https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
@@ -52,7 +57,11 @@ alias condai="conda install"
 alias typora="open -a typora"
 alias tpr=typora
 ## macvim
-alias vv=mvim
+vv () {
+    mvim $* > /dev/null 2>&1
+}
+## Python binary file
+export PATH=/usr/local/Cellar/python@3.9/3.9.12_1/bin:$PATH
 
 # iTerm2 shell integration
 if [[ -z $EMACS ]]; then
