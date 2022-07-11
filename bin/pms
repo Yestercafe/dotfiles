@@ -17,7 +17,7 @@ pmset -c standby 0
 pmset -c autopoweroff 0
 pmset -c tcpkeepalive 1
 
-pmset -b displaysleep 5
+pmset -b displaysleep 3
 pmset -b sleep 20
 pmset -b disksleep 30
 pmset -b hibernatemode 3
