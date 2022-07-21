@@ -14,6 +14,11 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# theme
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # aliases
 ## GCC/Clang
 alias gcc="gcc-11"
@@ -67,3 +72,6 @@ export PATH=/usr/local/Cellar/python@3.9/3.9.12_1/bin:$PATH
 if [[ -z $EMACS ]]; then
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
+
+## Java 17
+export PATH=$HOME/opt/jdk-17.0.1.jdk/Contents/Home/bin:$PATH
