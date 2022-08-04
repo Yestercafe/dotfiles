@@ -22,6 +22,8 @@ export PATH=/usr/local/mysql/bin:$PATH
 
 # Python binary files
 export PATH=/Users/ivan/Library/Python/3.9/bin:$PATH
+export PATH=/Users/ivan/Library/Python/3.8/bin:$PATH
+export PATH=/usr/local/Cellar/python@3.9/3.9.12_1/bin:$PATH
 
 # LLVM
 export PATH=/usr/local/opt/llvm/bin:$PATH
@@ -32,8 +34,12 @@ export PATH=/usr/local/Cellar/i386-jos-elf-gcc/4.6.1/bin:/usr/local/Cellar/i386-
 export LDFLAGS="-L/usr/local/lib"
 export CPPFLAGS="-I/usr/local/include"
 
+## Go lang
+export PATH=$HOME/go/bin:$PATH
+
 # JDK
-export PATH=$HOME/opt/jdk-16.0.2.jdk/Contents/Home/bin:$PATH
+#export PATH=$HOME/opt/jdk-16.0.2.jdk/Contents/Home/bin:$PATH
+export PATH=$HOME/opt/jdk-17.0.1.jdk/Contents/Home/bin:$PATH
 
 # Doom Emacs
 export PATH=$HOME/.emacs.d/bin:$PATH
