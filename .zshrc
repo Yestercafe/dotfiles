@@ -68,7 +68,7 @@ eval $(thefuck --alias)
 alias mcd=mkcd
 alias v=vim
 alias e='nh emacs'
-alias ec='nh emacsclient -a ""'
+alias ec='nh emacsclient -a "" -c'
 ## zsh
 alias zsh_config="vim ~/.zshrc"
 alias zsh_redeploy="source ~/.zshrc"
