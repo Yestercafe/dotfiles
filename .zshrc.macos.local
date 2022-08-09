@@ -20,7 +20,11 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # aliases
-## GCC/Clang
+## GCC/Clang/Makefile/CMake
+export PATH=/usr/local/opt/riscv-gnu-toolchain/bin:$PATH
+export PATH=/usr/local/Cellar/i386-jos-elf-gcc/4.6.1/bin:/usr/local/Cellar/i386-jos-elf-binutils/2.21.1/bin:/usr/local/Cellar/i386-jos-elf-gdb/7.3.1/bin:$PATH
+export LDFLAGS="-L/usr/local/lib"
+export CPPFLAGS="-I/usr/local/include"
 alias gcc="gcc-11"
 alias g++="g++-11"
 alias gpp="g++"
@@ -47,24 +51,60 @@ export LDFLAGS="-L/usr/local/lib"
 export CPPFLAGS="-I/usr/local/include"
 alias make_by_gcc="export CC=/usr/local/bin/gcc-11;export CXX=/usr/local/bin/g++-11;export CMAKE_C_COMPILER=/usr/local/bin/gcc-11;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-11"
 alias make_by_clang="export CC=/usr/bin/clang;export CXX=/usr/bin/clang++;export CMAKE_C_COMPILER=/usr/bin/local/clang;export CMAKE_CXX_COMPILER=/usr/bin/local/clang++"
-# proxy
+
+## proxy
 alias proxy_set="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890; curl ipinfo.io"
 alias proxy_unset="unset http_proxy; unset https_proxy; unset all_proxy; curl ipinfo.io"
 alias proxy_prefix="https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890"
 alias ppf=proxy_prefix
 alias pp=proxy_prefix
 alias p=proxy_prefix
+
 ## conda
 alias condaa="conda activate"
 alias condad="conda deactivate"
 alias condai="conda install"
+
 ## Typora
 alias typora="open -a typora"
 alias tpr=typora
+
 ## macvim
 vv () {
     mvim $* > /dev/null 2>&1
 }
+## user scripts
+export PATH=$HOME/.local/bin:$DOTFILES/bin:/usr/local/bin:/usr/local/sbin:$PATH
+
+## nano
+export PATH=/usr/local/Cellar/nano/6.3/bin:$PATH
+
+## RVM
+export PATH="$PATH:$HOME/.rvm/bin"
+
+## cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
+## MySQL
+export PATH=/usr/local/mysql/bin:$PATH
+
+## Python binary files
+export PATH=/Users/ivan/Library/Python/3.9/bin:$PATH
+export PATH=/Users/ivan/Library/Python/3.8/bin:$PATH
+export PATH=/usr/local/Cellar/python@3.9/3.9.12_1/bin:$PATH
+
+## LLVM
+export PATH=/usr/local/opt/llvm/bin:$PATH
+
+## Go
+export PATH=$HOME/go/bin:$PATH
+
+## JDK
+#export PATH=$HOME/opt/jdk-16.0.2.jdk/Contents/Home/bin:$PATH
+export PATH=$HOME/opt/jdk-17.0.1.jdk/Contents/Home/bin:$PATH
+
+## Doom Emacs
+export PATH=$HOME/.emacs.d/bin:$PATH
 
 # iTerm2 shell integration
 if [[ -z $EMACS ]]; then
