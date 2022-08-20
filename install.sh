@@ -143,6 +143,16 @@ install_zinit() {
     fi
 }
 
+iterm_support() {
+    echo "- Install iTerm2 tools"
+    UTILITIES=(imgcat imgls it2api it2attention it2check it2copy it2dl it2getvar it2git it2setcolor it2setkeylabel it2tip it2ul it2universion it2profile)
+    for U in "${UTILITIES[@]}"
+    do
+        echo "Downloading $U..."
+        curl -SsL "https://iterm2.com/utilities/$U" > "$DOTDIR/.iterm2/$U" && chmod +x "$DOTDIR/.iterm2/$U"
+    done
+}
+
 done_dotfiles() {
     echo "- Link files"
     ln -sf $DOTFILES/.zshenv $HOME/.zshenv
@@ -186,6 +196,9 @@ main() {
         install_dotfiles
         clean_dotfiles
         install_zinit
+        if is_mac; then
+            iterm_support
+        fi
         done_dotfiles
     fi
 }
