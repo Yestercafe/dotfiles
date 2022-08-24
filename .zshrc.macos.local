@@ -14,6 +14,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+## user scripts
+export PATH=$HOME/.local/bin:$DOTFILES/bin:/usr/local/bin:/usr/local/sbin:$PATH
+
 ## proxy
 alias proxy_set="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890; curl ipinfo.io"
 alias proxy_unset="unset http_proxy; unset https_proxy; unset all_proxy; curl ipinfo.io"
@@ -43,8 +46,6 @@ alias tpr=typora
 vv () {
     mvim $* > /dev/null 2>&1
 }
-## user scripts
-export PATH=$HOME/.local/bin:$DOTFILES/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 ## nano
 export PATH=/usr/local/Cellar/nano/6.3/bin:$PATH
