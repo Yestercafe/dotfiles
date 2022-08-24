@@ -83,6 +83,30 @@ alias zsh_redeploy="source ~/.zshrc"
 ## git
 alias gdh="git diff HEAD"
 alias gdh1="git diff HEAD~1"
+## gcc
+alias gcc="gcc-11"
+alias g++="g++-11"
+alias gpp="g++"
+alias gc9="gcc -std=c99"
+alias gc1="gcc -std=c11"
+alias gc7="gcc -std=c17"
+alias gp3="g++ -std=c++03"
+alias gp1="g++ -std=c++11"
+alias gp4="g++ -std=c++14"
+alias gp7="g++ -std=c++17"
+alias gp20="g++ -std=c++20"
+## clang
+alias lcc="clang"
+alias lpp="clang++"
+alias lc9="clang -std=c99"
+alias lc1="clang -std=c11"
+alias lc7="clang -std=c17"
+alias lp3="clang++ -std=c++03"
+alias lp1="clang++ -std=c++11"
+alias lp4="clang++ -std=c++14"
+alias lp7="clang++ -std=c++17"
+alias lp2a="clang++ -std=c++2a"
+alias lp20="clang++ -std=c++20"   # LLVM12
 
 # Completion enhancements
 zinit wait lucid depth"1" for \
