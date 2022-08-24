@@ -113,7 +113,7 @@ export PATH=$HOME/.emacs.d/bin:$PATH
 export PATH=/Users/ivan/.dotfiles/cms-git-tools:$PATH
 
 # iTerm2 shell integration
-if [[ -z $EMACS ]]; then
+if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
 
