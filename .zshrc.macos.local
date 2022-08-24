@@ -77,9 +77,6 @@ export PATH=$HOME/opt/jdk-17.0.1.jdk/Contents/Home/bin:$PATH
 ## Doom Emacs
 export PATH=$HOME/.emacs.d/bin:$PATH
 
-## cms-git-tools
-export PATH=/Users/ivan/.dotfiles/cms-git-tools:$PATH
-
 # iTerm2 shell integration
 if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

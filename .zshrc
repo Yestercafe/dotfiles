@@ -108,6 +108,9 @@ alias lp7="clang++ -std=c++17"
 alias lp2a="clang++ -std=c++2a"
 alias lp20="clang++ -std=c++20"   # LLVM12
 
+## cms-git-tools
+export PATH=/Users/ivan/.dotfiles/cms-git-tools:$PATH
+
 # Completion enhancements
 zinit wait lucid depth"1" for \
       atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
