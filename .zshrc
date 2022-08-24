@@ -48,6 +48,14 @@ zinit wait lucid for \
       OMZP::iterm2 \
       OMZP::dash
 
+# theme
+zinit snippet OMZL::git.zsh
+zinit snippet OMZT::lukerandall
+# powerlevel10k here:
+#zinit ice depth=2; zinit light romkatv/powerlevel10k
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # functions
 mkcd() {
     mkdir -p "$@" && cd "$_";

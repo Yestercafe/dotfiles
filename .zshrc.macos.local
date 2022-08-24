@@ -14,20 +14,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-# theme
-zinit snippet OMZL::git.zsh
-zinit snippet OMZT::lukerandall
-# powerlevel10k here:
-#zinit ice depth=2; zinit light romkatv/powerlevel10k
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # aliases
-## GCC/Clang/Makefile/CMake
-export PATH=/usr/local/opt/riscv-gnu-toolchain/bin:$PATH
-export PATH=/usr/local/Cellar/i386-jos-elf-gcc/4.6.1/bin:/usr/local/Cellar/i386-jos-elf-binutils/2.21.1/bin:/usr/local/Cellar/i386-jos-elf-gdb/7.3.1/bin:$PATH
-export LDFLAGS="-L/usr/local/lib"
-export CPPFLAGS="-I/usr/local/include"
 alias gcc="gcc-11"
 alias g++="g++-11"
 alias gpp="g++"
@@ -50,10 +37,6 @@ alias lp4="clang++ -std=c++14"
 alias lp7="clang++ -std=c++17"
 alias lp2a="clang++ -std=c++2a"
 alias lp20="clang++ -std=c++20"   # LLVM12
-export LDFLAGS="-L/usr/local/lib"
-export CPPFLAGS="-I/usr/local/include"
-alias make_by_gcc="export CC=/usr/local/bin/gcc-11;export CXX=/usr/local/bin/g++-11;export CMAKE_C_COMPILER=/usr/local/bin/gcc-11;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-11"
-alias make_by_clang="export CC=/usr/bin/clang;export CXX=/usr/bin/clang++;export CMAKE_C_COMPILER=/usr/bin/local/clang;export CMAKE_CXX_COMPILER=/usr/bin/local/clang++"
 
 ## proxy
 alias proxy_set="export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890; curl ipinfo.io"
@@ -62,6 +45,14 @@ alias proxy_prefix="https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.
 alias ppf=proxy_prefix
 alias pp=proxy_prefix
 alias p=proxy_prefix
+
+## GCC/Clang/Makefile/CMake
+export PATH=/usr/local/opt/riscv-gnu-toolchain/bin:$PATH
+export PATH=/usr/local/Cellar/i386-jos-elf-gcc/4.6.1/bin:/usr/local/Cellar/i386-jos-elf-binutils/2.21.1/bin:/usr/local/Cellar/i386-jos-elf-gdb/7.3.1/bin:$PATH
+export LDFLAGS="-L/usr/local/lib"
+export CPPFLAGS="-I/usr/local/include"
+alias make_by_gcc="export CC=/usr/local/bin/gcc-11;export CXX=/usr/local/bin/g++-11;export CMAKE_C_COMPILER=/usr/local/bin/gcc-11;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-11"
+alias make_by_clang="export CC=/usr/bin/clang;export CXX=/usr/bin/clang++;export CMAKE_C_COMPILER=/usr/bin/local/clang;export CMAKE_CXX_COMPILER=/usr/bin/local/clang++"
 
 ## conda
 alias condaa="conda activate"
