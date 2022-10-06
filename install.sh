@@ -53,21 +53,21 @@ install_package() {
         if is_mac; then
             brew install ${1}
         elif is_debian; then
-            apt install -y ${1}
+            sudo apt install -y ${1}
         elif is_arch; then
-            pacman -S --noconfirm ${1}
+            sudo pacman -S --noconfirm ${1}
         elif is_fedora; then
-            dnf install -y ${1}
+            sudo dnf install -y ${1}
         fi
     else
         if is_mac; then
             brew upgrade ${1}
         elif is_debian; then
-            apt upgrade -y ${1}
+            sudo apt upgrade -y ${1}
         elif is_arch; then
-            pacman -S --noconfirm ${1}
+            sudo pacman -S --noconfirm ${1}
         elif is_fedora; then
-            dnf install -y ${1}
+            sudo dnf install -y ${1}
         fi
     fi
 }
@@ -187,7 +187,11 @@ done_dotfiles() {
 }
 
 main() {
+    sudo -v
+    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
     set_proxy
+
     if [ -d $ZINIT_PATH ] || [ -d $TMUX_PATH ] || [ -d $VIM_PATH ]; then
         promote_yn "Do you want to reset all configurations and continue?" "choice"
         if [ $choice -eq $YES ]; then
