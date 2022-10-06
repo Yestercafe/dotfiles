@@ -50,7 +50,8 @@ zinit wait lucid for \
 
 # theme
 zinit snippet OMZL::git.zsh
-zinit snippet OMZT::lukerandall
+#zinit snippet OMZT::gentoo
+zinit light Moarram/headline
 # powerlevel10k here:
 #zinit ice depth=2; zinit light romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -74,11 +75,13 @@ eval $(thefuck --alias)
 # aliases
 ## basic
 alias mcd=mkcd
+alias q=$EDITOR
 alias v=vim
+alias n=nvim
 alias e='nh emacs'
 alias ec='nh emacsclient -a "" -c'
 ## zsh
-alias zsh_config="vim ~/.zshrc"
+alias zsh_config="q ~/.zshrc"
 alias zsh_redeploy="source ~/.zshrc"
 ## git
 alias gdh="git diff HEAD"
