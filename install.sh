@@ -44,6 +44,10 @@ is_arch() {
     command -v yay > /dev/null 2>&1 || command -v pacman > /dev/null 2>&1
 }
 
+is_fedora() {
+    command -v dnf > /dev/null 2>&1
+}
+
 install_package() {
     if ! command -v ${1} > /dev/null 2>&1; then
         if is_mac; then
@@ -52,6 +56,8 @@ install_package() {
             apt install -y ${1}
         elif is_arch; then
             pacman -S --noconfirm ${1}
+        elif is_fedora; then
+            dnf install -y ${1}
         fi
     else
         if is_mac; then
@@ -60,6 +66,8 @@ install_package() {
             apt upgrade -y ${1}
         elif is_arch; then
             pacman -S --noconfirm ${1}
+        elif is_fedora; then
+            dnf install -y ${1}
         fi
     fi
 }
