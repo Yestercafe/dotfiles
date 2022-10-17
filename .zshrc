@@ -51,11 +51,12 @@ zinit wait lucid for \
 # theme
 zinit snippet OMZL::git.zsh
 #zinit snippet OMZT::gentoo
-zinit light Moarram/headline
+#zinit light Moarram/headline
+#zinit light joshjon/bliss-zsh
 # powerlevel10k here:
-#zinit ice depth=2; zinit light romkatv/powerlevel10k
+zinit ice depth=2; zinit light romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # functions
 mkcd() {
