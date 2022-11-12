@@ -9,8 +9,7 @@
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
 import:
-  # https://github.com/eendroroy/alacritty-theme
-  - ~/.config/alacritty/alacritty-theme/themes/wombat.yaml
+  - ~/.dotfiles/hybrid-terminal-sexy.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
