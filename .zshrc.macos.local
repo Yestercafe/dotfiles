@@ -88,3 +88,9 @@ if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
 
+# GHCup bins
+export PATH=$HOME/.ghcup/bin:$PATH
+
+# Coq
+export PATH=/Applications/CoqIDE.app/Contents/Resources/bin:$PATH
+
