@@ -36,7 +36,7 @@ export PATH=/usr/local/opt/riscv-gnu-toolchain/bin:$PATH
 export PATH=/usr/local/Cellar/i386-jos-elf-gcc/4.6.1/bin:/usr/local/Cellar/i386-jos-elf-binutils/2.21.1/bin:/usr/local/Cellar/i386-jos-elf-gdb/7.3.1/bin:$PATH
 export LDFLAGS="-L/usr/local/lib"
 export CPPFLAGS="-I/usr/local/include"
-alias make_by_gcc="export CC=/usr/local/bin/gcc-11;export CXX=/usr/local/bin/g++-11;export CMAKE_C_COMPILER=/usr/local/bin/gcc-11;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-11"
+alias make_by_gcc="export CC=/usr/local/bin/gcc-12;export CXX=/usr/local/bin/g++-12;export CMAKE_C_COMPILER=/usr/local/bin/gcc-12;export CMAKE_CXX_COMPILER=/usr/local/bin/g++-12"
 alias make_by_clang="export CC=/usr/bin/clang;export CXX=/usr/bin/clang++;export CMAKE_C_COMPILER=/usr/bin/local/clang;export CMAKE_CXX_COMPILER=/usr/bin/local/clang++"
 
 ## conda
@@ -82,6 +82,7 @@ export PATH=$HOME/opt/jdk-17.0.1.jdk/Contents/Home/bin:$PATH
 
 ## Doom Emacs
 export PATH=$HOME/.emacs.d/bin:$PATH
+alias doom="EMACS=/usr/local/Cellar/emacs-plus@28/28.2/Emacs.app/Contents/MacOS/Emacs doom"
 
 # iTerm2 shell integration
 if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
@@ -91,6 +92,14 @@ fi
 # GHCup bins
 export PATH=$HOME/.ghcup/bin:$PATH
 
+# Cabal bins
+export PATH=$HOME/.cabal/bin:$PATH
+
 # Coq
 export PATH=/Applications/CoqIDE.app/Contents/Resources/bin:$PATH
+
+# cpt
+function snip () {
+    cp ~/learning/algorithm/vjudge/snip.cc $*
+}
 
