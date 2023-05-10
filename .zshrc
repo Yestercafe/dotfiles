@@ -1,6 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -94,8 +91,8 @@ alias zsh_redeploy="source ~/.zshrc"
 alias gdh="git diff HEAD"
 alias gdh1="git diff HEAD~1"
 ## gcc
-alias gcc="gcc-12"
-alias g++="g++-12"
+alias gcc="gcc-13"
+alias g++="g++-13"
 alias gpp="g++"
 alias gc9="gcc -std=c99"
 alias gc1="gcc -std=c11"
@@ -353,7 +350,3 @@ elif [[ $OSTYPE == linux* ]]; then
 fi
 
 [ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
