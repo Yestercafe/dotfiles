@@ -1,3 +1,6 @@
 [submodule "cms-git-tools"]
 	path = cms-git-tools
 	url = https://github.com/cms-sw/cms-git-tools.git
+[submodule "antigen"]
+	path = antigen
+	url = https://github.com/zsh-users/antigen
