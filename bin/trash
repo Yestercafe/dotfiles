@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+import os
+import sys
+import time
+
+HOME = os.getenv('HOME')
+TRASH_ROOT = f'{HOME}/Trash/'
+
+for arg in sys.argv[1:]:
+    if arg[0] == '-':
+        continue
+    if not os.path.exists(arg):
+        print(f'"{arg}" doesn`t exist.')
+        continue
+    if not os.path.exists(TRASH_ROOT):
+        os.mkdir(TRASH_ROOT)
+    else:
+        if os.path.isfile(TRASH_ROOT):
+            print(f'"{TRASH_ROOT}" occupied.')
+    target_filename = arg + f'-{int(time.time())}'
+    target_path = TRASH_ROOT + target_filename
+    path_check = target_path[:]
+    tail = 1
+    while os.path.exists(path_check):
+        path_check = target_path + f'_{tail}'
+        tail += 1
+    target_path = path_check
+    os.system(f'mv {arg} {target_path}')
+    print(f'Move "{arg}" to "{target_path}"')
+
