@@ -176,9 +176,9 @@ done_dotfiles() {
     ln -sf $DOTFILES/.gvimrc $HOME/.gvimrc
     cp $DOTFILES/.ideavimrc $HOME/.ideavimrc
 
-    git clone https://github.com/gpakosz/.tmux.git $TMUX_PATH
+    # install TPM
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     ln -sf $TMUX_PATH/.tmux.conf $HOME/.tmux.conf
-    cp $DOTFILES/.tmux.conf.local $HOME/.tmux.conf.local
 
     ln -sf $DOTFILES/.condarc $HOME/.condarc
     ln -sf $DOTFILES/.irbrc $HOME/.irbrc
