@@ -1,6 +1,5 @@
 #!/bin/sh
 DOTFILES=$HOME/.dotfiles
-TMUX_PATH=$HOME/.tmux
 ZINIT_PATH=$HOME/.zinit
 VIM_PATH=$HOME/.vim
 PROXY_PORT=7890
@@ -180,7 +179,7 @@ done_dotfiles() {
 
     # install TPM
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    ln -sf $TMUX_PATH/.tmux.conf $HOME/.tmux.conf
+    ln -sf ./.tmux.conf $HOME/.tmux.conf
 
     ln -sf $DOTFILES/.condarc $HOME/.condarc
     ln -sf $DOTFILES/.irbrc $HOME/.irbrc
