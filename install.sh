@@ -3,6 +3,8 @@ DOTFILES=$HOME/.dotfiles
 ZINIT_PATH=$HOME/.zinit
 VIM_PATH=$HOME/.vim
 PROXY_PORT=7890
+ALACRITTY_PATH=$HOME/.config/alacritty
+WEZTERM_PATH=$HOME/.config/wezterm
 
 OS=$(uname -s)
 
@@ -183,6 +185,11 @@ done_dotfiles() {
 
     ln -sf $DOTFILES/.condarc $HOME/.condarc
     ln -sf $DOTFILES/.irbrc $HOME/.irbrc
+
+    mkdir -p $ALACRITTY_PATH
+    ln -sf $DOTFILES/alacritty.yml $ALACRITTY_PATH/alacritty.yml
+    mkdir -p $WEZTERM_PATH
+    ln -sf $DOTFILES/wezterm.lua $WEZTERM_PATH/wezterm.lua
 
     echo "- Done!"
 }
