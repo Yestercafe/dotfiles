@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+import os
+
+HOME = os.environ['HOME']
+EMACS_DS_HOME = HOME + '/emacs.ds'
+CONFIG_LIST = ['zero', 'centaur', 'doom', 'purcell', 'spacemacs']
+EXISTS_CONFIGS = os.listdir(EMACS_DS_HOME)
+
+def shell(command: str) -> int:
+    print(f'> {command}')
+    return os.system(command)
+
+def main():
+    missing_ones = []
+    for config in CONFIG_LIST:
+        if not config in EXISTS_CONFIGS:
+            missing_ones.append(config)
+
+    assert(len(missing_ones) == 1)
+    missing_one = missing_ones[0]
+
+    for i, name in enumerate(CONFIG_LIST):
+        print(f'{i + 1}. {name}')
+    choice = int(input('Your choice: '))
+    if choice < 1 or choice > len(CONFIG_LIST):
+        print('Bad choice.')
+        return
+    idx = choice - 1
+    
+    if CONFIG_LIST[idx] == missing_one:
+        print(f'The current config is "{missing_one}", nothing happened.')
+    else:
+        shell(f'mv {HOME}/.emacs.d {EMACS_DS_HOME}/{missing_one}')
+        shell(f'mv {EMACS_DS_HOME}/{CONFIG_LIST[idx]} {HOME}/.emacs.d')
+
+if __name__ == '__main__':
+    main()
+
