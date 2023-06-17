@@ -50,9 +50,9 @@ zinit wait lucid for \
 
 # theme
 zinit snippet OMZL::git.zsh
-source /Users/ivan/repos/based-on-default-zsh-theme/bod.zsh-theme
+#source /Users/ivan/repos/based-on-default-zsh-theme/bod.zsh-theme
 #zinit light Yescafe/based-on-default-zsh-theme
-#zinit snippet OMZT::gentoo
+zinit snippet OMZT::lambda
 #zinit light Moarram/headline
 #zinit light joshjon/bliss-zsh
 #zinit light denysdovhan/spaceship-zsh-theme
@@ -115,6 +115,20 @@ alias lp7="clang++ -std=c++17"
 alias lp2a="clang++ -std=c++2a"
 alias lp20="clang++ -std=c++20"   # LLVM12
 
+alias rr='cd `randfile`'
+
+# Prettify ls if there is gls
+if (( $+commands[gls] )); then
+    alias ls='gls --color=tty --group-directories-first'
+else
+    alias ls='ls --color=tty --group-directories-first'
+fi
+alias ll="ls -l"
+alias la="ls -la"
+alias tm=$HOME/.dotfiles/bin/trash
+
+command -v btm >/dev/null 2>&1 && alias top=btm
+
 ## cms-git-tools
 export PATH=/Users/ivan/.dotfiles/cms-git-tools:$PATH
 
@@ -129,15 +143,7 @@ zinit wait lucid depth"1" for \
 
 zinit wait lucid light-mode depth"1" for \
       zsh-users/zsh-history-substring-search \
-      hlissner/zsh-autopair \
       agkozak/zsh-z
-
-if [[ $OSTYPE != linux* && $CPUTYPE != aarch* ]]; then
-    zinit ice wait lucid from"gh-r" as"program"
-    zinit light sei40kr/fast-alias-tips-bin
-    zinit ice wait lucid depth"1"
-    zinit light sei40kr/zsh-fast-alias-tips
-fi
 
 # Git extras
 zinit ice wait lucid as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" make"PREFIX=$ZPFX"
@@ -146,13 +152,6 @@ zinit light tj/git-extras
 # Lazygit
 zinit ice wait lucid as"program" from"gh-r" sbin atload"alias lg=lazygit"
 zinit light jesseduffield/lazygit
-
-# Prettify ls
-if (( $+commands[gls] )); then
-    alias ls='gls --color=tty --group-directories-first'
-else
-    alias ls='ls --color=tty --group-directories-first'
-fi
 
 # Homebrew completion
 if type brew &>/dev/null; then
@@ -164,7 +163,7 @@ fi
 # Modern Unix commands
 # See https://github.com/ibraheemdev/modern-unix
 zinit wait lucid as"null" from"gh-r" for \
-      atload"alias ls='exa --color=auto --group-directories-first'; alias la='ls -laFh'" cp"**/exa.1 -> $ZPFX/share/man/man1" mv"**/exa.zsh -> $ZINIT[COMPLETIONS_DIR]/_exa" sbin"**/exa" if'[[ $OSTYPE != linux* && $CPUTYPE != aarch* ]]' ogham/exa \
+      atload"alias ls='exa --color=auto --group-directories-first'; alias la='ls -laFh'; alias ll='ls -lFh'" cp"**/exa.1 -> $ZPFX/share/man/man1" mv"**/exa.zsh -> $ZINIT[COMPLETIONS_DIR]/_exa" sbin"**/exa" if'[[ $OSTYPE != linux* && $CPUTYPE != aarch* ]]' ogham/exa \
       atload"alias cat='bat -p --wrap character'" mv"**/bat.1 -> $ZPFX/share/man/man1" cp"**/autocomplete/bat.zsh -> $ZINIT[COMPLETIONS_DIR]/_bat" sbin"**/bat" @sharkdp/bat \
       mv"**/fd.1 -> $ZPFX/share/man/man1" cp"**/autocomplete/_fd -> $ZINIT[COMPLETIONS_DIR]" sbin"**/fd" @sharkdp/fd \
       mv"**/hyperfine.1 -> $ZPFX/share/man/man1" cp"**/autocomplete/_hyperfine -> $ZINIT[COMPLETIONS_DIR]" sbin"**/hyperfine" @sharkdp/hyperfine \
@@ -180,16 +179,8 @@ zinit wait lucid as"null" from"gh-r" for \
 zinit ice as"program" from"gh-r"
 zinit light microsoft/ripgrep-prebuilt
 
-zinit ice wait lucid as"null" from"gh-r" cp"**/doc/rg.1 -> $ZPFX/share/man/man1" mv"**/complete/_rg -> $ZINIT[COMPLETIONS_DIR]"
+zinit ice wait lucid as"null" from"gh-r" cp"**/doc/rg.1 -> $ZPFX/share/man/man1" mv"**/complete/_rg -> $ZINIT[COMPLETIOS_DIR]"
 zinit light BurntSushi/ripgrep
-
-# For GNU ls (the binaries can be gls, gdircolors, e.g. on OS X when installing the
-# coreutils package from Homebrew; you can also use https://github.com/ogham/exa)
-# (( $+commands[gdircolors] )) && alias dircolors=gdircolors
-# zinit ice depth="1" atclone"dircolors -b LS_COLORS > clrs.zsh" \
-    #       atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-    #       atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
-# zinit light trapd00r/LS_COLORS
 
 # FZF: fuzzy finder
 zinit ice wait lucid from"gh-r" nocompile src'key-bindings.zsh' sbin \
