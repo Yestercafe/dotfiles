@@ -89,6 +89,7 @@ clean_dotfiles() {
     .tmux.conf.local
     .condarc
     .irbrc
+    .bashrc
     "
 
     backup_path="bak-$(date +%s)"
@@ -165,6 +166,7 @@ done_dotfiles() {
     echo "- Link files"
     ln -sf $DOTFILES/.zshenv $HOME/.zshenv
     ln -sf $DOTFILES/.zshrc $HOME/.zshrc
+    ln -sf $DOTFILES/.bashrc $HOME/.bashrc
     if is_mac; then
         ln -sf $DOTFILES/.zshrc.macos.local $HOME/.zshrc.local
     fi
