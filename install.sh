@@ -4,6 +4,7 @@ ZINIT_PATH=$HOME/.zinit
 VIM_PATH=$HOME/.vim
 PROXY_PORT=7890
 ALACRITTY_PATH=$HOME/.config/alacritty
+KITTY_PATH=$HOME/.config/kitty
 WEZTERM_PATH=$HOME/.config/wezterm
 
 OS=$(uname -s)
@@ -190,6 +191,8 @@ done_dotfiles() {
     ln -sf $DOTFILES/alacritty.yml $ALACRITTY_PATH/alacritty.yml
     mkdir -p $WEZTERM_PATH
     ln -sf $DOTFILES/wezterm.lua $WEZTERM_PATH/wezterm.lua
+    mkdir -p $KITTY_PATH
+    ln -sf $DOTFILES/kitty.conf $KITTY_PATH/kitty.conf
 
     echo "- Done!"
 }
