@@ -1,5 +1,32 @@
 # Yestercafe's Dotfiles & UNIX Setups Manuals
 
+- [Yestercafe's Dotfiles \& UNIX Setups Manuals](#yestercafes-dotfiles--unix-setups-manuals)
+  - [Clone This Repo Manually](#clone-this-repo-manually)
+  - [Install Some Parts Manually](#install-some-parts-manually)
+    - [Shells](#shells)
+      - [Bash](#bash)
+      - [Zsh](#zsh)
+    - [TUI Tools](#tui-tools)
+      - [Homebrew, macOS](#homebrew-macos)
+      - [tmux](#tmux)
+      - [joshuto](#joshuto)
+    - [Editors](#editors)
+      - [Emacs](#emacs)
+      - [NeoVim](#neovim)
+      - [Vim, Deprecated](#vim-deprecated)
+      - [IdeaVim](#ideavim)
+    - [Terminal Emulators](#terminal-emulators)
+      - [Alacritty](#alacritty)
+      - [Kitty](#kitty)
+      - [WezTerm](#wezterm)
+      - [iTerm 2 \& iTerm 2 Integrations, macOS](#iterm-2--iterm-2-integrations-macos)
+    - [Programming Languages](#programming-languages)
+      - [Rust](#rust)
+      - [Go](#go)
+      - [Haskell (GHCup)](#haskell-ghcup)
+      - [Anaconda and Python](#anaconda-and-python)
+      - [Ruby](#ruby)
+
 ## Clone This Repo Manually
 
 All instructions depend on git, you should install it before git cloneing:
