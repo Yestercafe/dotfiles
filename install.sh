@@ -182,7 +182,7 @@ done_dotfiles() {
 
     # install TPM
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    ln -sf ./.tmux.conf $HOME/.tmux.conf
+    ln -sf $DOTFILES/.tmux.conf $HOME/.tmux.conf
 
     ln -sf $DOTFILES/.condarc $HOME/.condarc
     ln -sf $DOTFILES/.irbrc $HOME/.irbrc
