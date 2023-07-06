@@ -167,7 +167,7 @@ git clone --depth 1 --recursive git@github.com/Yescafe/vim.git $HOME/.vim
 
 #### IdeaVim
 
-If you wanna use IdeaVim config, you should clone the deprecated Vim config first. And then:
+If you wanna use IdeaVim config, you should clone the deprecated Vim config firstly. And then:
 
 ```bash
 mv $HOME/.ideavimrc $HOME/.ideavimrc.bak
