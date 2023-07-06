@@ -117,6 +117,22 @@ alias lp20="clang++ -std=c++20"   # LLVM12
 
 alias rr='cd `randfile`'
 
+tn () {
+  if [ "$#" -eq 0 ]; then
+    tmux new
+  else
+    tmux new -s $*
+  fi
+}
+
+ta () {
+  if [ "$#" -eq 0 ]; then
+    tmux a
+  else
+    tmux a -t $*
+  fi
+}
+
 # Prettify ls if there is gls
 if (( $+commands[gls] )); then
     alias ls='gls --color=tty --group-directories-first'

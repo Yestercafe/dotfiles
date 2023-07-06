@@ -172,3 +172,20 @@ function sgo () {
   cp ~/learning/algorithm/vjudge/_snips/snip.go $*
 }
 
+# tmux
+function tn () {
+  if [ "$#" -eq 0 ]; then
+    tmux new
+  else
+    tmux new -s $*
+  fi
+}
+
+function ta () {
+  if [ "$#" -eq 0 ]; then
+    tmux a
+  else
+    tmux a -t $*
+  fi
+}
+
