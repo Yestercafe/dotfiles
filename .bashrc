@@ -142,6 +142,7 @@ export PATH=/usr/local/opt/llvm/bin:$PATH
 
 # Go
 export PATH=$HOME/opt/go1.19/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
 
 # JDK
 #export PATH=$HOME/opt/jdk-16.0.2.jdk/Contents/Home/bin:$PATH
