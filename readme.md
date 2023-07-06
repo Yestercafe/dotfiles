@@ -184,7 +184,7 @@ ln -sf $DOTFILES/.ideavimrc $HOME/.ideavimrc
 ```bash
 mkdir -p $HOME/.config/alacritty
 mv $HOME/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml.bak
-ln -sf $DOTFILES/alacritty.yml $ALACRITTY_PATH/alacritty.yml
+ln -sf $DOTFILES/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 ```
 
 #### Kitty
@@ -194,7 +194,7 @@ ln -sf $DOTFILES/alacritty.yml $ALACRITTY_PATH/alacritty.yml
 ```bash
 mkdir -p $HOME/.config/kitty
 mv $HOME/.config/kitty/kitty.conf $HOME/.config/kitty/kitty.conf.bak
-ln -sf $DOTFILES/kitty.conf $kitty_PATH/kitty.conf
+ln -sf $DOTFILES/kitty.conf $HOME/.config/kitty/kitty.conf
 ```
 
 #### WezTerm
@@ -204,7 +204,7 @@ ln -sf $DOTFILES/kitty.conf $kitty_PATH/kitty.conf
 ```bashk
 mkdir -p $HOME/.config/wezterm
 mv $HOME/.config/wezterm/wezterm.lua $HOME/.config/wezterm/wezterm.lua.bak
-ln -sf $DOTFILES/wezterm.lua $wezterm_PATH/wezterm.lua
+ln -sf $DOTFILES/wezterm.lua $HOME/.config/wezterm/wezterm.lua
 ```
 
 #### iTerm 2 & iTerm 2 Integrations, macOS
