@@ -174,6 +174,7 @@ function sgo () {
 }
 
 # tmux
+alias t=tmux
 function tn () {
   if [ "$#" -eq 0 ]; then
     tmux new
