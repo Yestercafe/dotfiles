@@ -133,6 +133,9 @@ ta () {
   fi
 }
 
+# add mason automatically installed LS into PATH
+export PATH=$HOME/.local/share/nvim/mason/bin:$PATH
+
 # Prettify ls if there is gls
 if (( $+commands[gls] )); then
     alias ls='gls --color=tty --group-directories-first'
