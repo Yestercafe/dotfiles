@@ -100,11 +100,13 @@ export PATH=$HOME/.cabal/bin:$PATH
 export PATH=/Applications/CoqIDE.app/Contents/Resources/bin:$PATH
 
 # cpt
+# scaffold
+export PATH=$HOME/repos/algo-templates/bin/:$PATH
 function snipcpp () {
-    cp ~/learning/algorithm/vjudge/_snips/snip.cpp $*
+    scaffold cpp simple $*
 }
 function snipgo () {
-    cp ~/learning/algorithm/vjudge/_snips/snip.go $*
+    scaffold go main $*
 }
 
 # MacDown
