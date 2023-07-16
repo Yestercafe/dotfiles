@@ -51,7 +51,7 @@ zinit wait lucid for \
 # theme
 zinit snippet OMZL::git.zsh
 #source /Users/ivan/repos/based-on-default-zsh-theme/bod.zsh-theme
-#zinit light Yescafe/based-on-default-zsh-theme
+#zinit light Yestercafe/based-on-default-zsh-theme
 zinit snippet OMZT::lambda
 #zinit light Moarram/headline
 #zinit light joshjon/bliss-zsh

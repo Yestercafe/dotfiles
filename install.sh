@@ -144,7 +144,7 @@ install_requirements() {
 install_dotfiles() {
     echo "- Clone dotfiles repo"
     rm -rf $DOTFILES
-    git clone --recursive https://github.com/Yescafe/dotfiles.git $DOTFILES
+    git clone --recursive https://github.com/Yestercafe/dotfiles.git $DOTFILES
 }
 
 install_zinit() {
@@ -176,7 +176,7 @@ done_dotfiles() {
     PATH=$DOTFILES/cms-git-tools:$PATH
     cp $DOTFILES/.gitconfig_macos $HOME/.gitconfig
 
-    git clone --recursive https://github.com/Yescafe/vim.git $HOME/.vim
+    git clone --recursive https://github.com/Yestercafe/vim.git $HOME/.vim
     ln -sf $DOTFILES/.gvimrc $HOME/.gvimrc
     cp $DOTFILES/.ideavimrc $HOME/.ideavimrc
 

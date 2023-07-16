@@ -44,9 +44,9 @@ xcode-select --install
 
 ```bash
 ## HTTPS protocol
-git clone --depth 1 --recursive https:://github.com/Yescafe/.dotfiles.git $HOME/.dotfiles
+git clone --depth 1 --recursive https:://github.com/Yestercafe/.dotfiles.git $HOME/.dotfiles
 ## SSH protocol
-git clone --depth 1 --recursive git@github.com:Yescafe/.dotfiles.git $HOME/.dotfiles
+git clone --depth 1 --recursive git@github.com:Yestercafe/.dotfiles.git $HOME/.dotfiles
 ```
 
 
@@ -136,9 +136,9 @@ My Emacs config is called zero.emacs:
 mv $HOME/.emacs $HOME/.emacs.bak
 mv $HOME/.emacs.d $HOME/.emacs.d.bak
 ## HTTPS protocol
-git clone https://github.com/Yescafe/zero.emacs.git $HOME/.emacs.d
+git clone https://github.com/Yestercafe/zero.emacs.git $HOME/.emacs.d
 ## SSH protocol
-git clone git://github.com:Yescafe/zero.emacs.git $HOME/.emacs.d
+git clone git://github.com:Yestercafe/zero.emacs.git $HOME/.emacs.d
 ```
 
 #### NeoVim
@@ -147,9 +147,9 @@ git clone git://github.com:Yescafe/zero.emacs.git $HOME/.emacs.d
 mv $HOME/.config/nvim $HOME/.config/nvim.bak
 mkdir -p $HOME/.config
 ## HTTPS protocol
-git clone https://github.com/Yescafe/nvim.git $HOME/.config/nvim
+git clone https://github.com/Yestercafe/nvim.git $HOME/.config/nvim
 ## SSH protocol
-git clone git://github.com:Yescafe/nvim.git $HOME/.config/nvim
+git clone git://github.com:Yestercafe/nvim.git $HOME/.config/nvim
 ```
 
 #### Vim, Deprecated
@@ -160,9 +160,9 @@ git clone git://github.com:Yescafe/nvim.git $HOME/.config/nvim
 mv $HOME/.vim $HOME/.vim.bak
 mv $HOME/.vimrc $HOME/.vimrc.bak
 ## HTTPS protocol
-git clone --depth 1 --recursive https://github.com/Yescafe/vim.git $HOME/.vim
+git clone --depth 1 --recursive https://github.com/Yestercafe/vim.git $HOME/.vim
 ## SSH protocol
-git clone --depth 1 --recursive git@github.com/Yescafe/vim.git $HOME/.vim
+git clone --depth 1 --recursive git@github.com/Yestercafe/vim.git $HOME/.vim
 ```
 
 #### IdeaVim
