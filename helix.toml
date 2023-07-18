@@ -1,0 +1,18 @@
+theme = "monokai_pro"
+
+[keys.insert]
+k = { j = "normal_mode" }
+
+[editor]
+line-number = "relative"
+mouse = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"

@@ -6,6 +6,7 @@ PROXY_PORT=7890
 ALACRITTY_PATH=$HOME/.config/alacritty
 KITTY_PATH=$HOME/.config/kitty
 WEZTERM_PATH=$HOME/.config/wezterm
+HELIX_PATH=$HOME/.config/helix
 
 OS=$(uname -s)
 
@@ -193,6 +194,8 @@ done_dotfiles() {
     ln -sf $DOTFILES/wezterm.lua $WEZTERM_PATH/wezterm.lua
     mkdir -p $KITTY_PATH
     ln -sf $DOTFILES/kitty.conf $KITTY_PATH/kitty.conf
+    mkdir -p $HELIX_PATH
+    ln -sf $DOTFILES/helix.conf $HELIX_PATH/config.toml
 
     echo "- Done!"
 }

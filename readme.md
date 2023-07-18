@@ -174,6 +174,14 @@ mv $HOME/.ideavimrc $HOME/.ideavimrc.bak
 ln -sf $DOTFILES/.ideavimrc $HOME/.ideavimrc
 ```
 
+#### Helix
+
+```bash
+mkdir -p $HOME/.config/helix
+mv $HOME/.config/helix/config.toml $HOME/.config/helix/config.toml.bak
+ln -sf $DOTFILES/helix.toml $HOME/.config/helix/config.toml
+```
+
 
 ### Terminal Emulators
 
