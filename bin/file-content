@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+function file_type() {
+    file="$1"
+    target=$(readlink -f "$file")
+    filetype=$(file -b $target)
+    if [[ "$filetype" == *"ASCII text"* || "$filetype" == *"Unicode text"* ]]; then
+        echo "r"
+    elif [[ -d "$target" ]]; then
+        echo "d"
+    else
+        echo "?"
+    fi
+}
+
+function read_file() {
+    filetype="$(file_type $1)"
+    if [[ "$filetype" == "r" ]]; then
+        bat -p --wrap character --color=always $1 2>/dev/null
+    elif [[ "$filetype" == "d" ]]; then
+        exa -1 -F --group-directories-first --color=always $1 2>/dev/null
+        exa_output="$(exa $1)"
+        if [[ -z $exa_output ]]; then
+            echo "<Empty>"
+        fi
+    else
+        file $1
+        if [[ -L "$1" ]]; then
+            echo " -> $(file $(readlink -f $1))"
+        fi
+    fi
+}
+
+read_file $1
+

@@ -5,6 +5,19 @@ export WORDCHARS="*?"
 export DOTFILES_PATH=$HOME/.dotfiles
 export EDITOR=nvim
 
+## PATH
+### prepend to PATH
+function prepend_path() {
+    export PATH=$1:$PATH
+}
+
+## paths
+prepend_path $HOME/bin
+prepend_path $HOME/.bin
+prepend_path $HOME/.local/bin
+prepend_path $DOTFILES_PATH/bin
+prepend_path $DOTFILES_PATH/cms-git-tools
+
 ## init zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -16,7 +29,7 @@ autoload -Uz _zinit
 ## zinit annexes
 zi light-mode depth"1" for \
     zdharma-continuum/zinit-annex-binary-symlink \
-    zdharma-continuum/zinit-annex-bin-gem-node
+    zdharma-continuum/zinit-annex-patch-dl
 
 ## oh-my-zsh components
 ### libraries
@@ -56,7 +69,7 @@ zi light-mode wait lucid depth"1" for \
     zsh-users/zsh-history-substring-search
 
 ### git extras
-zi lucid wait'0a' for \
+zi lucid wait'0a' depth"1" for \
     as"null" src"etc/git-extras-completion.zsh" lbin="!bin/git-*" tj/git-extras
 
 ### Homebrew completion
@@ -70,16 +83,45 @@ fi
 ### https://github.com/ibraheemdev/modern-unix
 zi light-mode wait lucid as"null" from"gh-r" for \
     atload"alias lg=lazygit" lbin"!**/lazygit" jesseduffield/lazygit \
-    atload"alias ls=exa --color=auto --group-directories-first" mv"**/exa.1 -> $ZPFX/man/man1" cp"**/exa.zsh -> $ZINIT[COMPLETIONS_DIR]/_exa" completions lbin"!**/exa" ogham/exa \
+    atload"alias ls=exa --color=auto --group-directories-first;alias l=exa -lt modified" mv"**/exa.1 -> $ZPFX/man/man1" cp"**/exa.zsh -> $ZINIT[COMPLETIONS_DIR]/_exa" completions lbin"!**/exa" ogham/exa \
     atload"alias cat='bat -p --wrap character'" mv"**/bat.1 -> $ZPFX/man/man1" cp"**/autocomplete/bat.zsh -> $ZINIT[COMPLETIONS_DIR]/_bat" completions lbin"!**/bat" @sharkdp/bat \
     mv"**/fd.1 -> $ZPFX/man/man1" cp"**/autocomplete/_fd -> $ZINIT[COMPLETIONS_DIR]" completions lbin"!**/fd" @sharkdp/fd \
     atload"alias dlt=delta" lbin"!**/delta" dandavison/delta \
-    atload"alias du=dust" mv"**/dust.1 -> $ZPFX/man/man1" cp"**/completions/_dust -> $ZINIT[COMPLETIONS_DIR]" completions lbin"!**/dust" bootandy/dust \
-    atload"alias df=\\duf" mv"**/duf.1 -> $ZPFX/man/man1" lbin"!**/duf" muesli/duf \
+    atload"alias du=dust" dl'https://raw.githubusercontent.com/bootandy/dust/master/man-page/dust.1 -> $ZPFX/man/man1/dust.1;https://raw.githubusercontent.com/bootandy/dust/master/completions/_dust -> $ZINIT[COMPLETIONS_DIR]/_dust' completions lbin"!**/dust" bootandy/dust \
+    atload"alias df=\\duf" dl'https://raw.githubusercontent.com/muesli/duf/master/duf.1 -> $ZPFX/man/man1/duf.1' lbin"!**/duf" muesli/duf \
     atload"alias top=btm" cp"**/completion/_btm -> $ZINIT[COMPLETIONS_DIR]" lbin"!**/btm" ClementTsang/bottom \
     atload"alias hf=hyperfine" lbin"!**/hyperfine" @sharkdp/hyperfine \
     atload"alias ping=gping" lbin"!**/gping" orf/gping \
-    atload"alias prc=procs" lbin"!**/procs" dalance/procs
+    atload"alias prc=procs" lbin"!**/procs" dalance/procs \
+    mv"**/rg.1 -> $ZPFX/man/man1" cp"**/complete/_rg -> $ZINIT[COMPLETIONS_DIR]" BurntSushi/ripgrep
+
+#### NOTE: DO NOT use lbin or wait lucid
+zi ice as"program" from"gh-r"
+zi light microsoft/ripgrep-prebuilt
+
+### fzf
+zi ice wait lucid from"gh-r" nocompile src'key-bindings.zsh' lbin"!fzf" \
+    dl'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -> $ZINIT[COMPLETIONS_DIR]/_fzf_completion;
+       https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -> key-bindings.zsh;
+       https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf-tmux.1 -> $ZPFX/man/man1/fzf-tmux.1;
+       https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1 -> $ZPFX/man/man1/fzf.1'
+zi light junegunn/fzf
+
+zi ice wait lucid depth"1" atload"zicompinit; zicdreplay" blockf
+zi light Aloxaf/fzf-tab
+
+# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' switch-group '[' ']'
+zstyle ':fzf-tab:*' fzf-pad 4
+zstyle ':fzf-tab:*' fzf-min-height 8
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:complete:*' fzf-preview 'file-content ${(Q)realpath}'
+zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
+	   fzf-preview
+
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git || git ls-tree -r --name-only HEAD || rg --files --hidden --follow --glob '!.git' || find ."
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='--border'
 
 # Customs
 ## utils
@@ -92,18 +134,6 @@ if (( $+commands[gls] )); then
 else
     alias ls='ls -hF --color=tty --group-directories-first'
 fi
-
-### prepend to PATH
-function prepend_path() {
-    export PATH=$1:$PATH
-}
-
-## paths
-prepend_path $HOME/bin
-prepend_path $HOME/.bin
-prepend_path $HOME/.local/bin
-prepend_path $DOTFILES_PATH/bin
-prepend_path $DOTFILES_PATH/cms-git-tools
 
 ## command-like functions
 function mcd() {
