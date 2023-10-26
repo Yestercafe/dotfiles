@@ -53,10 +53,14 @@ zi wait'0a' lucid for \
    OMZP::z
 
 ## theme
-ZSH_THEME="robbyrussell"
+ZSH_THEME="starship"
 zi cdclear -q
 setopt promptsubst
-zi snippet OMZT::robbyrussell
+# zi snippet OMZT::robbyrussell
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
 
 ## completion enhancements
 zi light-mode wait lucid depth"1" for \
@@ -188,4 +192,6 @@ alias la="ls -la"
 alias l="ls -ltr"
 
 alias tm=trash
+
+[ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 

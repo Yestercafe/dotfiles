@@ -1,0 +1,5 @@
+format = '$os$all'
+
+[os]
+disabled = false
+

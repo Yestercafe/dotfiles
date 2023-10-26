@@ -3,10 +3,11 @@ DOTFILES=$HOME/.dotfiles
 ZINIT_PATH=$HOME/.zinit
 VIM_PATH=$HOME/.vim
 PROXY_PORT=7890
-ALACRITTY_PATH=$HOME/.config/alacritty
-KITTY_PATH=$HOME/.config/kitty
-WEZTERM_PATH=$HOME/.config/wezterm
-HELIX_PATH=$HOME/.config/helix
+CONFIG=$HOME/.config
+ALACRITTY_PATH=$CONFIG/alacritty
+KITTY_PATH=$CONFIG/kitty
+WEZTERM_PATH=$CONFIG/wezterm
+HELIX_PATH=$CONFIG/helix
 
 OS=$(uname -s)
 
@@ -196,6 +197,7 @@ done_dotfiles() {
     ln -sf $DOTFILES/kitty.conf $KITTY_PATH/kitty.conf
     mkdir -p $HELIX_PATH
     ln -sf $DOTFILES/helix.toml $HELIX_PATH/config.toml
+    ln -sf $DOTFILES/starship.toml $CONFIG/
 
     echo "- Done!"
 }
