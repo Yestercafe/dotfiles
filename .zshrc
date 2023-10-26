@@ -1,6 +1,5 @@
 # Basics
 ## environment
-export LANG="en_US.UTF-8"
 export WORDCHARS="*?"
 export DOTFILES_PATH=$HOME/.dotfiles
 export EDITOR=nvim
@@ -192,6 +191,22 @@ alias la="ls -la"
 alias l="ls -ltr"
 
 alias tm=trash
+
+alias proxy='
+    export http_proxy="http://${hostip}:${http_hostport}"
+    export https_proxy="http://${hostip}:${http_hostport}"
+    export all_proxy="socks5://${hostip}:${socks_hostport}"
+'
+alias unproxy='
+    unset http_proxy
+    unset https_proxy
+    unset all_proxy
+'
+alias echoproxy='
+    echo "http_proxy  = $http_proxy"
+    echo "https_proxy = $https_proxy"
+    echo "all_proxy   = $all_proxy"
+'
 
 [ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 
