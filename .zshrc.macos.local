@@ -115,3 +115,10 @@ alias mdn=macdown
 # joshuto
 alias ra=joshuto   # NTR here
 
+# node.js 
+export PATH=$HOME/opt/node-v18.18.2-darwin-x64/bin:$PATH
+
+# JB
+export PATH=/Applications/CLion.app/Contents/MacOS:$PATH
+export PATH=/Applications/GoLand.app/Contents/MacOS:$PATH
+
