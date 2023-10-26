@@ -195,7 +195,7 @@ done_dotfiles() {
     mkdir -p $KITTY_PATH
     ln -sf $DOTFILES/kitty.conf $KITTY_PATH/kitty.conf
     mkdir -p $HELIX_PATH
-    ln -sf $DOTFILES/helix.conf $HELIX_PATH/config.toml
+    ln -sf $DOTFILES/helix.toml $HELIX_PATH/config.toml
 
     echo "- Done!"
 }
