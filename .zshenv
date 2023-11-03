@@ -3,8 +3,8 @@ export DEFAULT_USER=$USER
 export EDITOR=nvim
 
 # HTTP proxy
-export http_hostport=7890
-export socks_hostport=7890
+export socks_hostport=10808
+export http_hostport=10809
 if [ -z "$WSL_DISTRO_NAME" ]; then
     export hostip="127.0.0.1"
 else
