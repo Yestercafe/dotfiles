@@ -1,14 +1,14 @@
 # conda init
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/ivan/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/ivan/.local/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/ivan/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/ivan/opt/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/Users/ivan/.local/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/ivan/.local/opt/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/ivan/opt/miniconda3/bin:$PATH"
+        export PATH="/Users/ivan/.local/opt/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -73,12 +73,12 @@ export PATH=/usr/local/Cellar/python@3.9/3.9.12_1/bin:$PATH
 export PATH=/usr/local/opt/llvm/bin:$PATH
 
 ## Go
-export PATH=$HOME/opt/go1.19/bin:$PATH
+export PATH=$HOME/.local/opt/go1.19/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
 
 ## JDK
-#export PATH=$HOME/opt/jdk-16.0.2.jdk/Contents/Home/bin:$PATH
-export PATH=$HOME/opt/jdk-17.0.1.jdk/Contents/Home/bin:$PATH
+#export PATH=$HOME/.local/opt/jdk-16.0.2.jdk/Contents/Home/bin:$PATH
+export PATH=$HOME/.local/opt/jdk-17.0.1.jdk/Contents/Home/bin:$PATH
 
 ## Doom Emacs
 export PATH=$HOME/.emacs.d/bin:$PATH
@@ -116,9 +116,12 @@ alias mdn=macdown
 alias ra=joshuto   # NTR here
 
 # node.js 
-export PATH=$HOME/opt/node-v18.18.2-darwin-x64/bin:$PATH
+export PATH=$HOME/.local/opt/node-v18.18.2-darwin-x64/bin:$PATH
 
 # JB
 export PATH=/Applications/CLion.app/Contents/MacOS:$PATH
 export PATH=/Applications/GoLand.app/Contents/MacOS:$PATH
+
+# flutter
+export PATH=$HOME/.local/opt/flutter/bin:$PATH
 
