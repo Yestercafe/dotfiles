@@ -13,8 +13,8 @@ if [ ! -z "$WSL_DISTRO_NAME" ]; then
 fi
 ## macOS v2rayU
 if [ ! -z "$(command -v sw_vers)" ]; then
-    export socks_hostport=1087
-    export http_hostport=1080
+    export socks_hostport=1080
+    export http_hostport=1087
 fi
 
 export https_proxy=http://$hostip:$http_hostport http_proxy=http://$hostip:$http_hostport all_proxy=socks5://$hostip:$socks_hostport no_proxy='localhost,127.0.0.1,::1'
