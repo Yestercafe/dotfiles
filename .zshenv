@@ -11,7 +11,7 @@ else
     export hostip=$(ip route | grep default | awk '{print $3}')
 fi
 
-export https_proxy=http://$hostip:$http_hostport http_proxy=http://$hostip:$http_hostport all_proxy=socks5://$hostip:$socks_hostport
+export https_proxy=http://$hostip:$http_hostport http_proxy=http://$hostip:$http_hostport all_proxy=socks5://$hostip:$socks_hostport no_proxy='localhost,127.0.0.1,::1'
 
 [ -f $HOME/.zshenv.local ] && source $HOME/.zshenv.local
 
