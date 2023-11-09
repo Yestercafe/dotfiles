@@ -21,3 +21,7 @@ export https_proxy=http://$hostip:$http_hostport http_proxy=http://$hostip:$http
 
 [ -f $HOME/.zshenv.local ] && source $HOME/.zshenv.local
 
+# Hacks for Neovide wsl
+export COLUMNS=80
+export LINES=30
+
