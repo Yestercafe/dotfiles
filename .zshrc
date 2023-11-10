@@ -86,7 +86,7 @@ fi
 ### https://github.com/ibraheemdev/modern-unix
 zi light-mode wait lucid as"null" from"gh-r" for \
     atload"alias lg=lazygit" lbin"!**/lazygit" jesseduffield/lazygit \
-    atload"alias ls=exa --color=auto --group-directories-first;alias l=exa -lt modified" mv"**/exa.1 -> $ZPFX/man/man1" cp"**/exa.zsh -> $ZINIT[COMPLETIONS_DIR]/_exa" completions lbin"!**/exa" ogham/exa \
+    atload"alias ls='exa --color=auto --group-directories-first';alias l='exa -lt modified'" mv"**/exa.1 -> $ZPFX/man/man1" cp"**/exa.zsh -> $ZINIT[COMPLETIONS_DIR]/_exa" completions lbin"!**/exa" ogham/exa \
     atload"alias cat='bat -p --wrap character'" mv"**/bat.1 -> $ZPFX/man/man1" cp"**/autocomplete/bat.zsh -> $ZINIT[COMPLETIONS_DIR]/_bat" completions lbin"!**/bat" @sharkdp/bat \
     mv"**/fd.1 -> $ZPFX/man/man1" cp"**/autocomplete/_fd -> $ZINIT[COMPLETIONS_DIR]" completions lbin"!**/fd" @sharkdp/fd \
     atload"alias dlt=delta" lbin"!**/delta" dandavison/delta \
