@@ -8,9 +8,9 @@ export socks_hostport=10808
 export http_hostport=10809
 export hostip="127.0.0.1"
 ## WSL 2
-if [ ! -z "$WSL_DISTRO_NAME" ]; then
-    export hostip=$(ip route | grep default | awk '{print $3}')
-fi
+# if [ ! -z "$WSL_DISTRO_NAME" ]; then
+#     export hostip=$(ip route | grep default | awk '{print $3}')
+# fi
 ## macOS v2rayU
 if [ ! -z "$(command -v sw_vers)" ]; then
     export socks_hostport=1080
