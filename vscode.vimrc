@@ -30,13 +30,15 @@ nnoremap > >>
 nnoremap < <<
 vnoremap > >gv
 vnoremap < <gv
+nnoremap s <NOP>
 
 "" g
 nnoremap gd editor.action.peekDefinition
 nnoremap gD editor.action.revealDefinition
 nnoremap gr editor.action.referenceSearch.trigger
-nnoremap gy editor.action.peekTypeDefinition
+nnoremap gt editor.action.peekTypeDefinition
 nnoremap go workbench.action.gotoSymbol
+nnoremap g. editor.action.quickFix
 
 "" vim_ctrl
 nnoremap <leader>o extension.vim_ctrl+o
@@ -54,3 +56,10 @@ nnoremap <C-t> workbench.action.terminal.toggleTerminal
 
 "" VSCode
 nnoremap <leader>p workbench.action.quickOpen
+nnoremap sd workbench.action.debug.start
+nnoremap sr workbench.action.debug.run
+nnoremap ss workbench.action.debug.stop
+nnoremap sR workbench.action.debug.restart
+""" toggle
+nnoremap <leader>tz workbench.action.toggleZenMode
+nnoremap <leader>tm editor.action.toggleMinimap
