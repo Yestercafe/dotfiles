@@ -134,6 +134,8 @@ install_requirements() {
     curl
     wget
     zsh
+    unzip
+    tmux
     "
     for r in $reqs; do
         if ! command -v $r > /dev/null 2>&1; then
