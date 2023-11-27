@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 DOTFILES=$HOME/.dotfiles
 ZINIT_PATH=$HOME/.zinit
 VIM_PATH=$HOME/.vim
