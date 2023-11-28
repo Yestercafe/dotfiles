@@ -1,0 +1,30 @@
+[user]
+	name = Ivan Chien
+	email = qyc027@gmail.com
+[alias]
+    st = status
+    a = add
+    p = push
+    pl = pull
+    co = checkout
+    cm = commit -m
+    l = log --oneline --graph
+    b = branch
+    rv = remote -v
+    m = merge
+    ss = stash
+[http]
+	sslverify = false
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
+[difftool "sourcetree"]
+	cmd = "'' "
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
+
