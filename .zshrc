@@ -220,5 +220,9 @@ alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 alias -g P="2>&1| pygmentize -l pytb"
 
+### CMake related
+alias cm='cmake -B./build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && make -C ./build'
+alias cmr='cmake -B./build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && make -C ./build && echo "===== output =====" && ./build/$(cat CMakeLists.txt | grep add_executable | sed "s/\s*add_executable\s*(\s*//g" | cut -d " " -f 1)'
+
 [ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 
