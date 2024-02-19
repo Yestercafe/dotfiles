@@ -67,6 +67,8 @@ nnoremap gT editor.action.revealTypeDefinition
 nnoremap gr editor.action.referenceSearch.trigger
 nnoremap go workbench.action.gotoSymbol
 nnoremap g. editor.action.quickFix
+nnoremap gf editor.action.formatDocument
+nnoremap gF gg=G``
 
 "" prefix [
 nnoremap [t workbench.action.previousEditorInGroup
