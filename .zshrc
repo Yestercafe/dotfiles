@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Basics
 ## environment
 export WORDCHARS="*?"
@@ -51,14 +58,16 @@ zi wait'0a' lucid for \
    OMZP::z
 
 ## theme
-ZSH_THEME="starship"
-zi cdclear -q
-setopt promptsubst
+ZSH_THEME="powerlevel10k"
+# zi cdclear -q
+# setopt promptsubst
+zi ice depth=1; zi light romkatv/powerlevel10k
 # zi snippet OMZT::robbyrussell
-zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+### === starship ===
+# zinit ice as"command" from"gh-r" \
+#           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+#           atpull"%atclone" src"init.zsh"
+# zinit light starship/starship
 
 ## completion enhancements
 zi light-mode wait lucid depth"1" for \
@@ -226,3 +235,5 @@ alias cmr='cmake -B./build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && make -C ./build
 
 [ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

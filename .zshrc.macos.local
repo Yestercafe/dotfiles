@@ -18,6 +18,7 @@ unset __conda_setup
 export PATH=$HOME/.local/bin:$DOTFILES/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 ## aliases
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias s=subl
 alias a=atom
 alias c=code
