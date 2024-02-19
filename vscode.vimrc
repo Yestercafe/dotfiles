@@ -33,6 +33,10 @@ nnoremap <leader>wv workbench.action.splitEditorRight
 nnoremap <leader>ws workbench.action.splitEditorDown
 nnoremap <leader>w[ workbench.action.previousEditorInGroup
 nnoremap <leader>w] workbench.action.nextEditorInGroup
+nnoremap <leader>wm workbench.action.toggleEditorWidths
+nnoremap <leader>w- editor.action.fontZoomOut
+nnoremap <leader>w+ editor.action.fontZoomIn
+nnoremap <leader>w= editor.action.fontZoomIn
 nnoremap <C-l> workbench.action.focusRightGroup
 nnoremap <C-h> workbench.action.focusLeftGroup
 nnoremap <C-k> workbench.action.focusAboveGroup
