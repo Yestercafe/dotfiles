@@ -6,11 +6,11 @@ export EDITOR=nvim
 ## Windows v2rayN
 export socks_hostport=7890
 export http_hostport=7890
-if [ ! -z "$WSL_DISTRO_NAME" ]; then
-    export hostip=$(ip route | grep default | awk '{print $3}')
-else
+# if [ ! -z "$WSL_DISTRO_NAME" ]; then
+#     export hostip=$(ip route | grep default | awk '{print $3}')
+# else
     export hostip="127.0.0.1"
-fi
+# fi
 
 export https_proxy=http://$hostip:$http_hostport http_proxy=http://$hostip:$http_hostport all_proxy=socks5://$hostip:$socks_hostport no_proxy='localhost,127.0.0.1,::1'
 
