@@ -59,18 +59,15 @@ zi wait'0a' lucid for \
 
 ## theme
 ZSH_THEME="powerlevel10k"
-zi cdclear -q
-setopt promptsubst
-### omz default
+# zi cdclear -q
+# setopt promptsubst
+zi ice depth=1; zi light romkatv/powerlevel10k
 # zi snippet OMZT::robbyrussell
-### starship
+### === starship ===
 # zinit ice as"command" from"gh-r" \
 #           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
 #           atpull"%atclone" src"init.zsh"
 # zinit light starship/starship
-### powerlevel10k
-zi ice depth=1
-zi light romkatv/powerlevel10k
 
 ## completion enhancements
 zi light-mode wait lucid depth"1" for \
