@@ -1,7 +1,8 @@
 [experimental]
-autoMemoryReclaim=gradual  # gradual  | dropcache | disabled
+autoMemoryReclaim=gradual
 networkingMode=mirrored
 dnsTunneling=true
-firewall=true
-autoProxy=true
-
+sparseVhd=true
+autoProxy=false
+hostAddressLoopback=true
+ignoredPorts=8000,8080,3306
