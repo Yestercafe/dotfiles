@@ -45,6 +45,7 @@ nnoremap <C-t> workbench.action.terminal.toggleTerminal
 
 "" +toggle
 nnoremap <leader>th :nohl<CR>
+nnoremap <leader><CR> :nohl<CR>
 nnoremap <leader>tz workbench.action.toggleZenMode
 nnoremap <leader>tm editor.action.toggleMinimap
 
