@@ -26,9 +26,22 @@ set incsearch
 
 " Find more examples here: https://jb.gg/share-ideavimrc
 
-map <leader>jl :tabnext<cr>
-map <leader>jh :tabprev<cr>
+nnoremap H ^
+nnoremap L $
+
+nnoremap <leader>w2 :vs<cr>
+nnoremap <leader>w3 :sp<cr>
+
+map ]b :tabnext<cr>
+map [b :tabprev<cr>
 
 map <leader>r <action>(Run)
 map s <NOP>
 map <leader>s <action>(Stop)
+
+map K <action>(ShowHoverInfo)
+map gh <action>(ShowHoverInfo)
+map ]d <Action>(GotoNextError)
+map [d <Action>(GotoPreviousError)
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotoDeclaration<CR>
