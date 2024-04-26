@@ -45,3 +45,9 @@ map ]d <Action>(GotoNextError)
 map [d <Action>(GotoPreviousError)
 nnoremap gi :action GotoImplementation<CR>
 nnoremap gd :action GotoDeclaration<CR>
+
+nnoremap gcc :action CommentByLineComment<CR>
+vnoremap gc :action CommentByLineComment<CR>
+nnoremap gbc :action CommentByBlockComment<CR>
+vnoremap gb :action CommentByBlockComment<CR>
+
