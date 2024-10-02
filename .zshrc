@@ -233,7 +233,11 @@ alias -g P="2>&1| pygmentize -l pytb"
 alias cm='cmake -B./build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && make -C ./build'
 alias cmr='cmake -B./build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && make -C ./build && echo "===== output =====" && ./build/$(cat CMakeLists.txt | grep add_executable | sed "s/\s*add_executable\s*(\s*//g" | cut -d " " -f 1)'
 
+### Reload rc
+alias reload='source ~/.zshrc'
+
 [ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
