@@ -194,3 +194,5 @@ function ta () {
 # add mason automatically installed LS into PATH
 export PATH=$HOME/.local/share/nvim/mason/bin:$PATH
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
