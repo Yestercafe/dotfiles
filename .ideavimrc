@@ -51,3 +51,5 @@ vnoremap gc :action CommentByLineComment<CR>
 nnoremap gbc :action CommentByBlockComment<CR>
 vnoremap gb :action CommentByBlockComment<CR>
 
+nnoremap <leader>ca :action ProblemsView.QuickFixes<CR>
+
