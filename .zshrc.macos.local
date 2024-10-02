@@ -53,6 +53,9 @@ vv () {
     mvim $* > /dev/null 2>&1
 }
 
+## Neovide
+alias nv=neovide
+
 ## nano
 export PATH=/usr/local/Cellar/nano/6.3/bin:$PATH
 
@@ -125,4 +128,10 @@ export PATH=/Applications/GoLand.app/Contents/MacOS:$PATH
 
 # flutter
 export PATH=$HOME/.local/opt/flutter/bin:$PATH
+
+# vcpkg
+export PATH=$HOME/.vcpkg-clion/vcpkg:$PATH
+
+# GNU find
+export PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
 
