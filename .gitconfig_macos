@@ -1,15 +1,15 @@
 [user]
 	name = Ivan Chien
-	email = qyc027@gmail.com
+	email = qyc027@outlook.com
 [http]
-	proxy = 127.0.0.1:7890
+	proxy = 127.0.0.1:7897
 [https]
-	proxy = 127.0.0.1:7890
+	proxy = 127.0.0.1:7897
 [core]
 	gitproxy = git-proxy
 	autocrlf = input
 [socks]
-	proxy = 127.0.0.1:7890
+	proxy = 127.0.0.1:7897
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
