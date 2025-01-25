@@ -1,243 +1,103 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
-# Basics
-## environment
-export WORDCHARS="*?"
-export DOTFILES_PATH=$HOME/.dotfiles
+export ZSH="$HOME/.oh-my-zsh"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+
+zstyle ':omz:update' frequency 30
+
+plugins=(git z colored-man-pages sudo fancy-ctrl-z zsh-syntax-highlighting zsh-autosuggestions fzf)
+
+source $ZSH/oh-my-zsh.sh
+
 export EDITOR=nvim
 
-## PATH
-### prepend to PATH
-function prepend_path() {
-    export PATH=$1:$PATH
-}
+# proxies
+export https_proxy=http://127.0.0.1:7897 http_proxy=http://127.0.0.1:7897 all_proxy=socks5://127.0.0.1:7897
 
-## paths
-prepend_path $HOME/bin
-prepend_path $HOME/.bin
-prepend_path $HOME/.local/bin
-prepend_path $DOTFILES_PATH/bin
-prepend_path $DOTFILES_PATH/cms-git-tools
+# Node.js
+export PATH=/Users/ivan/opt/node-v20.18.0-darwin-arm64/bin:$PATH
 
-## init zinit
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone --depth 1 https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+# Rust
+. "$HOME/.cargo/env"
 
-## zinit annexes
-zi light-mode depth"1" for \
-    zdharma-continuum/zinit-annex-binary-symlink \
-    zdharma-continuum/zinit-annex-patch-dl
+# Golang
+export PATH=/Users/ivan/opt/go1.23.2/bin:$PATH
 
-## oh-my-zsh components
-### libraries
-zi for \
-   OMZL::correction.zsh \
-   OMZL::history.zsh \
-   OMZL::git.zsh \
-   OMZL::key-bindings.zsh \
-   OMZL::theme-and-appearance.zsh
-
-### plugins
-zi for \
-   OMZP::git
-
-zi wait'0a' lucid for \
-   OMZP::colored-man-pages \
-   OMZP::extract \
-   OMZP::fancy-ctrl-z \
-   OMZP::sudo \
-   OMZP::z
-
-## theme
-ZSH_THEME="powerlevel10k"
-# zi cdclear -q
-# setopt promptsubst
-zi ice depth=1; zi light romkatv/powerlevel10k
-# zi snippet OMZT::robbyrussell
-### === starship ===
-# zinit ice as"command" from"gh-r" \
-#           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-#           atpull"%atclone" src"init.zsh"
-# zinit light starship/starship
-
-## completion enhancements
-zi light-mode wait lucid depth"1" for \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    blockf \
-    zdharma-continuum/fast-syntax-highlighting \
-    atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions \
-    zsh-users/zsh-completions \
-    zsh-users/zsh-history-substring-search
-
-### git extras
-zi lucid wait'0a' depth"1" for \
-    as"null" src"etc/git-extras-completion.zsh" lbin="!bin/git-*" tj/git-extras
-
-### Homebrew completion
-if command -v brew >/dev/null; then
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-    autoload -Uz compinit
-    compinit
-fi
-
-## CLI tools
-### https://github.com/ibraheemdev/modern-unix
-zi light-mode wait lucid as"null" from"gh-r" for \
-    atload"alias lg=lazygit" lbin"!**/lazygit" jesseduffield/lazygit \
-    atload"alias ls='exa --color=auto --group-directories-first';alias l='exa -lt modified'" mv"**/exa.1 -> $ZPFX/man/man1" cp"**/exa.zsh -> $ZINIT[COMPLETIONS_DIR]/_exa" completions lbin"!**/exa" ogham/exa \
-    atload"alias cat='bat -p --wrap character'" mv"**/bat.1 -> $ZPFX/man/man1" cp"**/autocomplete/bat.zsh -> $ZINIT[COMPLETIONS_DIR]/_bat" completions lbin"!**/bat" @sharkdp/bat \
-    mv"**/fd.1 -> $ZPFX/man/man1" cp"**/autocomplete/_fd -> $ZINIT[COMPLETIONS_DIR]" completions lbin"!**/fd" @sharkdp/fd \
-    atload"alias dlt=delta" lbin"!**/delta" dandavison/delta \
-    atload"alias du=dust" dl'https://raw.githubusercontent.com/bootandy/dust/master/man-page/dust.1 -> $ZPFX/man/man1/dust.1;https://raw.githubusercontent.com/bootandy/dust/master/completions/_dust -> $ZINIT[COMPLETIONS_DIR]/_dust' completions lbin"!**/dust" bootandy/dust \
-    atload"alias df=\\duf" dl'https://raw.githubusercontent.com/muesli/duf/master/duf.1 -> $ZPFX/man/man1/duf.1' lbin"!**/duf" muesli/duf \
-    atload"alias top=btm" cp"**/completion/_btm -> $ZINIT[COMPLETIONS_DIR]" lbin"!**/btm" ClementTsang/bottom \
-    atload"alias hf=hyperfine" lbin"!**/hyperfine" @sharkdp/hyperfine \
-    atload"alias ping=gping" lbin"!**/gping" orf/gping \
-    atload"alias prc=procs" lbin"!**/procs" dalance/procs \
-    mv"**/rg.1 -> $ZPFX/man/man1" cp"**/complete/_rg -> $ZINIT[COMPLETIONS_DIR]" BurntSushi/ripgrep
-
-#### NOTE: DO NOT use lbin or wait lucid
-zi ice as"program" from"gh-r"
-zi light microsoft/ripgrep-prebuilt
-
-### fzf
-zi ice wait lucid from"gh-r" nocompile src'key-bindings.zsh' lbin"!fzf" \
-    dl'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh -> $ZINIT[COMPLETIONS_DIR]/_fzf_completion;
-       https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh -> key-bindings.zsh;
-       https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf-tmux.1 -> $ZPFX/man/man1/fzf-tmux.1;
-       https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1 -> $ZPFX/man/man1/fzf.1'
-zi light junegunn/fzf
-
-zi ice wait lucid depth"1" atload"zicompinit; zicdreplay" blockf
-zi light Aloxaf/fzf-tab
-
-# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-zstyle ':fzf-tab:*' switch-group '[' ']'
-zstyle ':fzf-tab:*' fzf-pad 4
-zstyle ':fzf-tab:*' fzf-min-height 8
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':fzf-tab:complete:*' fzf-preview 'file-content ${(Q)realpath}'
-zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
-	   fzf-preview
-
-export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git || git ls-tree -r --name-only HEAD || rg --files --hidden --follow --glob '!.git' || find ."
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='--border'
-
-# Customs
-## utils
-### thefuck
-command -v thefuck > /dev/null && eval $(thefuck --alias)
-
-### preset `ls`
-if (( $+commands[gls] )); then
-    alias ls='gls -hF --color=tty --group-directories-first'
+# Miniconda
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/ivan/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
 else
-    alias ls='ls -hF --color=tty --group-directories-first'
+    if [ -f "/Users/ivan/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/ivan/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/ivan/opt/miniconda3/bin:$PATH"
+    fi
 fi
+unset __conda_setup
+# <<< conda initialize <<<
 
-## command-like functions
-function mcd() {
-    mkdir -p "$@" && cd "$_";
-}
+# RVM
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-### TODO: maybe not work
-function nh() {
-    nohup $* > /dev/null &
-}
+# Jetbrains toolbox
+export PATH="/Users/ivan/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
 
-function tn() {
-  if [ "$#" -eq 0 ]; then
-    tmux new
-  else
-    tmux new -s $*
-  fi
-}
+# gcc
+export LDFLAGS="-L/usr/local/lib"
+export CPPFLAGS="-I/usr/local/include"
 
-function ta() {
-  if [ "$#" -eq 0 ]; then
-    tmux a
-  else
-    tmux a -t $*
-  fi
-}
+# GNU find
+export PATH=$(brew --prefix)/opt/findutils/libexec/gnubin:$PATH
 
-function rr() {
-    cd $(randfile)
-}
+# ctags
+export PATH=/opt/homebrew/Cellar/ctags/5.8_2/bin/:$PATH
 
-function f() {
-    find . -iname "*$1*" ${@:2}
-}
+# local bin
+export PATH=$HOME/.local/bin:$PATH
 
-function r() {
-    grep "$1" ${@:2} -R .
-}
+# aliases
+alias reload="source $HOME/.zshrc"
+alias zed="open -a /Applications/Zed.app"
+alias gcc=gcc-14
+alias g++=g++-14
 
-## aliases
-alias q=$EDITOR
+alias rr=rustrover
+alias cl=clion
+alias nv=neovide
+alias q=nv
+alias lg=lazygit
 
-### git
-alias gdh="git diff HEAD"
-alias gdh1="git diff HEAD~1"
+# functions
+function f() { find . -iname "*$1*" ${@:2} }
+function r() { grep "$1" ${@:2} -R . }
+function mkcd() { mkdir -p "$@" && cd "$_" }
 
-### tmux
-alias tls="tmux ls"
+# doom emacs
+export PATH=$HOME/.config/emacs/bin:$PATH
 
-alias ll="ls -l"
-alias la="ls -la"
-alias l="ls -ltr"
+# lean 4
+source $HOME/.elan/env
 
-alias tm=trash
-
-alias proxy='
-    export http_proxy="http://${hostip}:${http_hostport}"
-    export https_proxy="http://${hostip}:${http_hostport}"
-    export all_proxy="socks5://${hostip}:${socks_hostport}"
-'
-alias unproxy='
-    unset http_proxy
-    unset https_proxy
-    unset all_proxy
-'
-alias echoproxy='
-    echo "http_proxy  = $http_proxy"
-    echo "https_proxy = $https_proxy"
-    echo "all_proxy   = $all_proxy"
-'
-
-### some from omz common-aliases
-alias grep='grep --color'
-alias -g H='| head'
-alias -g T='| tail'
-alias -g G='| grep'
-alias -g L="| less"
-alias -g M="| most"
-alias -g LL="2>&1 | less"
-alias -g CA="2>&1 | cat -A"
-alias -g NE="2> /dev/null"
-alias -g NUL="> /dev/null 2>&1"
-alias -g P="2>&1| pygmentize -l pytb"
-
-### CMake related
-alias cm='cmake -B./build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && make -C ./build'
-alias cmr='cmake -B./build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && make -C ./build && echo "===== output =====" && ./build/$(cat CMakeLists.txt | grep add_executable | sed "s/\s*add_executable\s*(\s*//g" | cut -d " " -f 1)'
-
-### Reload rc
-alias reload='source ~/.zshrc'
-
-[ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
+# moonbit
+export PATH="$HOME/.moon/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+
+[ -f "/Users/ivan/.ghcup/env" ] && . "/Users/ivan/.ghcup/env" # ghcup-env
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
