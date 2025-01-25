@@ -101,3 +101,5 @@ export PATH="$HOME/.moon/bin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
+
+[ -f ~/openai-api-key.sh ] && source ~/openai-api-key.sh
