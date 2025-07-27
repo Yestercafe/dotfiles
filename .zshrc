@@ -113,3 +113,29 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # x-cmd
 [ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
 
+# bili live TUI
+export PATH=/Users/ivan/opt/bililive-v1.2.0-darwin-arm64:$PATH
+
+# cmake with vcpkg manifest mode
+alias vcpkg-cmake=cmake -DCMAKE_TOOLCHAIN_FILE=$HOME/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake
+
+# find real GNU toolchains
+export gpp_PATH="/opt/homebrew/Cellar/gcc/14.2.0_1/bin/g++-14"
+export gcc_PATH="/opt/homebrew/Cellar/gcc/14.2.0_1/bin/gcc-14"
+alias g++=${gpp_PATH}
+alias gcc=${gcc_PATH}
+
+# use real gcc as cmake toolchains
+function cmake__use_gcc() {
+    export CC=${gcc_PATH}
+    export CXX=${gpp_PATH}
+    export CMAKE_C_COMPILER=${gcc_PATH}
+    export CMAKE_CXX_COMPILER=${gpp_PATH}
+}
+
+function cmake__use_clang() {
+    export CC=clang
+    export CXX=clang++
+    export CMAKE_C_COMPILER=clang
+    export CMAKE_CXX_COMPILER=clang++
+}
