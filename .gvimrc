@@ -1,2 +1,0 @@
-set guifont=MesloLGSNerdFontComplete-Regular:h13
-colorscheme molokai
