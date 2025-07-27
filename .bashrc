@@ -127,7 +127,9 @@ alias make_by_clang="export CC=/usr/bin/clang;export CXX=/usr/bin/clang++;export
 alias typora="open -a typora"
 
 # RVM
-export PATH="$HOME/.rvm/bin:$PATH"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # MySQL
 export PATH=/usr/local/mysql/bin:$PATH
@@ -196,3 +198,5 @@ export PATH=$HOME/.local/share/nvim/mason/bin:$PATH
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
