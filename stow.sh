@@ -3,21 +3,21 @@
 VERSION="v0.1.0"
 
 stow_deploy() {
-    stow -v v2
+    stow -v .
 }
 
 stow_remove() {
-    stow -vD v2
+    stow -vD .
 }
 
 install_stow() {
     # for Debian/Ubuntu
-    if ! type apt >/dev/null 2>&1; then
+    if type apt >/dev/null 2>&1; then
         sudo apt install stow
     fi
 
     # for macOS
-    if ! type brew >/dev/null 2>&1; then
+    if type brew >/dev/null 2>&1; then
         brew install stow
     fi
 }
@@ -26,6 +26,8 @@ check_deps() {
     if ! type stow >/dev/null 2>&1; then
         install_stow
     fi
+
+
 }
 
 print_help() {
@@ -39,8 +41,8 @@ print_help() {
     echo
 
     echo -e "## HELP"
-    echo -e "* deploy - Deploy v2 dotfiles with stow"
-    echo -e "* remove - Remove all v2 dotfiles from user directory with stow"
+    echo -e "* deploy - Deploy dotfiles with stow"
+    echo -e "* remove - Remove all dotfiles from user directory with stow"
     echo -e "* version - Show script version"
     echo -e "* help - Show help"
 }

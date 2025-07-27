@@ -11,3 +11,8 @@ rr() {
     fi
 }
 
+mkdircd() {
+    mkdir -p $1 && cd $1
+}
+
+
