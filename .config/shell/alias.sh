@@ -1,3 +1,4 @@
+# git aliases
 alias g=git
 alias gst="g status"
 alias ga="g add"
@@ -7,9 +8,14 @@ alias gb="g branch"
 alias gss="g stash"
 alias glog="g log --graph --oneline"
 
+# custom functions
 alias mcd="ic_mkdircd"
 alias cdtmp="ic_make_tmp_dir_and_cd"
 alias ic-backup="ic_backup_file_or_dir"
 alias ic-persist="ic_persist_file_or_dir"
 alias ic-yk="ic_yank_to_clipboard"
+
+# tools
+alias lg=lazygit
+alias q=nvim
 

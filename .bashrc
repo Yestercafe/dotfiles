@@ -4,6 +4,10 @@ case $- in
       *) return;;
 esac
 
+[[ -f $HOME/.config/shell/pre-env.sh ]] && source $HOME/.config/shell/pre-env.sh
+
+[[ -f /usr/share/blesh/ble.sh ]] && source /usr/share/blesh/ble.sh
+
 HISTCONTROL=ignoreboth:erasedups
 HISTSIZE=10000
 HISTFILESIZE=10000
@@ -38,3 +42,8 @@ alias .r=reload
 
 export PATH=$HOME/.local/bin:$PATH
 
+# attach ble.sh
+[[ ${BLE_VERSION-} ]] && ble-attach
+
+# archlinux: https://wiki.archlinux.org/title/Bash#Command_not_found
+[[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
