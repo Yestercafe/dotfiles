@@ -81,9 +81,12 @@ alias .r=reload
 
 export PATH=$HOME/.local/bin:$PATH
 
-# Attach ble.sh
-[[ ${BLE_VERSION-} ]] && ble-attach
+# Theme: starship
+which starship 2>&1 > /dev/null && eval "$(starship init bash)"
 
 # archlinux: https://wiki.archlinux.org/title/Bash#Command_not_found
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && source /usr/share/doc/pkgfile/command-not-found.bash
+
+# Attach ble.sh
+[[ ${BLE_VERSION-} ]] && ble-attach
 
