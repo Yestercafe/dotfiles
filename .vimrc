@@ -165,7 +165,7 @@ function! ColorColumnToggle()
     if &colorcolumn
         set colorcolumn=0
     else
-        set colorcolumn=81
+        set colorcolumn=81,121
     endif
 endfunction
 
