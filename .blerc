@@ -2,3 +2,6 @@ ble-bind -f 'M-C-?' 'kill-backward-uword'
 ble-bind -f 'M-DEL' 'kill-backward-uword'
 ble-bind -f 'M-C-h' 'kill-backward-uword'
 ble-bind -f 'M-BS' 'kill-backward-uword'
+
+ble-import -d integration/fzf-completion
+ble-import -d integration/fzf-key-bindings

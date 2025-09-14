@@ -57,8 +57,8 @@ shopt -s checkwinsize
 shopt -s autocd  
 shopt -s expand_aliases
 
-# Share history with multiple bash
-PROMPT_COMMAND='history -a; history -n'
+# Share history with multiple bash(conflict with ble.sh)
+#PROMPT_COMMAND='history -a; history -n'
 
 # Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
