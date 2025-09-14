@@ -7,6 +7,7 @@ alias gp="g push"
 alias gb="g branch"
 alias gss="g stash"
 alias glog="g log --graph --oneline"
+alias gcmsg="git commit -m"
 
 # custom functions
 alias mcd="ic_mkdircd"
