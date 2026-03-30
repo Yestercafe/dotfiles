@@ -1,0 +1,12 @@
+" Minimal Vim/Neovim configuration (shared)
+set nocompatible
+let mapleader = " "
+
+" Load modular vimrc fragments
+let s:here = expand('<sfile>:p:h')
+let s:dir = s:here . '/vimrc.d'
+for s:file in split(glob(s:dir . '/*.vim'), '\n')
+  execute 'source ' . fnameescape(s:file)
+endfor
+unlet s:file s:here s:dir
+
