@@ -1,0 +1,5 @@
+# Runtime artifacts generated when .vim is linked to ~/.vim
+.vim/undo/
+.vim/swap/
+.vim/backup/
+.vim/.netrwhist
