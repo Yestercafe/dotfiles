@@ -116,6 +116,11 @@ endfunction
 
 let g:fzf_vim = get(g:, 'fzf_vim', {})
 let g:fzf_vim.tags_command = s:CtagsBuildCommand()
+" fzf.vim 的 :Buffers 在「当前 buffer 排序第一」时会加 --header-lines=1，第一行不参与选择；
+" buffer 很少时可选行只剩 0～1 行，上下键与 Ctrl-n/C-p 会像完全失效。
+if !has_key(g:fzf_vim, 'buffers_options')
+  let g:fzf_vim.buffers_options = ['--no-header-lines']
+endif
 
 if s:CtagsReady()
   set tags=./tags;,tags;
