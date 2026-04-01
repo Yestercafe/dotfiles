@@ -48,13 +48,23 @@ function! s:GitTrackedSearch() abort
         \ )
 endfunction
 
+function! s:CtagsBin() abort
+  if executable('uctags')
+    return 'uctags'
+  endif
+  if executable('ctags')
+    return 'ctags'
+  endif
+  return ''
+endfunction
+
 function! s:CtagsReady() abort
-  return executable('ctags')
+  return !empty(s:CtagsBin())
 endfunction
 
 function! s:CtagsWarnMissing() abort
   echohl WarningMsg
-  echom "ctags not found: install Universal Ctags to enable :Tags and jump-to-definition."
+  echom "ctags not found: install Universal Ctags (uctags/ctags) to enable :Tags and jump-to-definition."
   echohl None
 endfunction
 
@@ -84,7 +94,7 @@ let s:ctags_excludes = [
       \ ]
 
 function! s:CtagsBuildCommand() abort
-  let l:parts = ['ctags', '-R', '--tag-relative=yes']
+  let l:parts = [s:CtagsBin(), '-R', '--tag-relative=yes']
   for l:item in s:ctags_excludes
     call add(l:parts, '--exclude=' . shellescape(l:item))
   endfor

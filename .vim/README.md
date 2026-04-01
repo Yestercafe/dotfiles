@@ -81,6 +81,8 @@ git submodule update --remote --merge
 brew install universal-ctags
 ```
 
+配置会优先使用 `uctags`，找不到时回退到 `ctags`（兼容多版本并存环境）。
+
 ### 日常用法
 
 - 手动重建 tags：`<leader>ct` 或 `:CtagsUpdate`
@@ -96,7 +98,7 @@ brew install universal-ctags
 ### 故障排查
 
 - 提示 `ctags not found`：确认 `ctags` 在 `PATH` 中（`ctags --version`）。
-- `:Tags` 无结果：先执行一次 `<leader>tu`，并确认当前项目根目录下存在 `tags` 文件。
+- `:Tags` 无结果：先执行一次 `<leader>ct`，并确认当前项目根目录下存在 `tags` 文件。
 - 索引过慢：保持自动更新关闭，仅在需要时手动更新，或继续精简忽略目录。
 
 ## 默认快捷键（leader = 空格）
@@ -110,7 +112,6 @@ brew install universal-ctags
 - `<leader>/` 当前文件内容搜索（`:BLines`）
 - `<leader>sG` 全局内容搜索（`:Rg`，需要本机有 `rg`）
 - `<leader>st` tags 检索（`:Tags`，需要本机有 `ctags`）
-- `:Tags` tags 检索（需要本机有 `ctags`）
 - `<leader>ct` 手动重建 tags（`:CtagsUpdate`）
 - `<leader>cT` 切换 tags 自动更新（`:CtagsAutoToggle`，默认关闭）
 - `<leader>F` 文件搜索（`:Files`，兼容保留）
