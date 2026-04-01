@@ -44,7 +44,8 @@ git submodule update --init --recursive
 
 3. 依赖确认：
 
-- 本方案使用 `fzf.vim`，需要本机安装 `fzf` 二进制（你已确认 Windows 可装，因此不会降级）。
+- 本方案的 fzf 功能依赖两个插件：`junegunn/fzf` + `junegunn/fzf.vim`。
+- 还需要本机安装 `fzf` 二进制（你已确认 Windows 可装，因此不会降级）。
 
 ## 插件清单（由 submodule 管理）
 
@@ -56,6 +57,7 @@ git submodule update --init --recursive
 - `tpope/vim-fugitive`
 - `airblade/vim-gitgutter`
 - `preservim/nerdtree`
+- `junegunn/fzf`
 - `junegunn/fzf.vim`
 - `vim-airline/vim-airline`
 
@@ -73,6 +75,11 @@ git submodule update --remote --merge
 
 - `<leader>w` 保存
 - `<leader>q` 退出
-- `<leader>n` 切换 NERDTree
-- `<leader>F` `fzf.vim` 文件搜索（`:Files`）
+- `<leader>fe` 切换 NERDTree
+- `<leader><space>` 文件搜索（`:Files`）
+- `<leader>,` Buffer 搜索（`:Buffers`）
+- `<leader>sg` 在当前工程的 Git 跟踪文件中搜索（弹出 `GitGrep>` 输入后执行 `git grep`）
+- `<leader>/` 当前文件内容搜索（`:BLines`）
+- `<leader>sG` 全局内容搜索（`:Rg`，需要本机有 `rg`）
+- `<leader>F` 文件搜索（`:Files`，兼容保留）
 

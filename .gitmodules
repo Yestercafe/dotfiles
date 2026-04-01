@@ -29,3 +29,6 @@
 [submodule ".vim/pack/bundle/start/vim-airline"]
 	path = .vim/pack/bundle/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule ".vim/pack/bundle/start/fzf"]
+	path = .vim/pack/bundle/start/fzf
+	url = https://github.com/junegunn/fzf.git
