@@ -48,6 +48,117 @@ function! s:GitTrackedSearch() abort
         \ )
 endfunction
 
+function! s:CtagsReady() abort
+  return executable('ctags')
+endfunction
+
+function! s:CtagsWarnMissing() abort
+  echohl WarningMsg
+  echom "ctags not found: install Universal Ctags to enable :Tags and jump-to-definition."
+  echohl None
+endfunction
+
+function! s:CtagsProjectRoot() abort
+  if executable('git')
+    let l:root = systemlist('git rev-parse --show-toplevel 2>/dev/null')
+    if v:shell_error == 0 && !empty(l:root)
+      return fnamemodify(l:root[0], ':p')
+    endif
+  endif
+  return getcwd() . '/'
+endfunction
+
+let s:ctags_excludes = [
+      \ '.git',
+      \ '.hg',
+      \ '.svn',
+      \ 'node_modules',
+      \ 'dist',
+      \ 'build',
+      \ 'target',
+      \ '.next',
+      \ '.cache',
+      \ '__pycache__',
+      \ '.venv',
+      \ 'vendor',
+      \ ]
+
+function! s:CtagsBuildCommand() abort
+  let l:parts = ['ctags', '-R', '--tag-relative=yes']
+  for l:item in s:ctags_excludes
+    call add(l:parts, '--exclude=' . shellescape(l:item))
+  endfor
+  return join(l:parts, ' ')
+endfunction
+
+let g:fzf_vim = get(g:, 'fzf_vim', {})
+let g:fzf_vim.tags_command = s:CtagsBuildCommand()
+
+if s:CtagsReady()
+  set tags=./tags;,tags;
+endif
+
+function! s:RebuildTags() abort
+  if !s:CtagsReady()
+    call s:CtagsWarnMissing()
+    return
+  endif
+
+  let l:root = s:CtagsProjectRoot()
+  let l:cmd = 'cd ' . shellescape(l:root) . ' && ' . s:CtagsBuildCommand()
+  call system(l:cmd)
+  if v:shell_error != 0
+    echohl WarningMsg
+    echom "ctags rebuild failed."
+    echohl None
+    return
+  endif
+  echom "ctags rebuilt in " . fnamemodify(l:root, ':~')
+endfunction
+
+function! s:TagsOrWarn() abort
+  if !s:CtagsReady()
+    call s:CtagsWarnMissing()
+    return
+  endif
+  call s:FzfOrWarn('Tags')
+endfunction
+
+let g:ctags_auto_update = get(g:, 'ctags_auto_update', 0)
+let s:ctags_last_update_at = reltime()
+let s:ctags_min_interval_sec = 5
+
+function! s:CtagsMaybeAutoUpdate() abort
+  if !get(g:, 'ctags_auto_update', 0)
+    return
+  endif
+  if !s:CtagsReady()
+    return
+  endif
+
+  let l:elapsed = reltimefloat(reltime(s:ctags_last_update_at))
+  if l:elapsed < s:ctags_min_interval_sec
+    return
+  endif
+
+  let s:ctags_last_update_at = reltime()
+  call s:RebuildTags()
+endfunction
+
+function! s:CtagsAutoToggle() abort
+  let g:ctags_auto_update = !get(g:, 'ctags_auto_update', 0)
+  echom 'ctags auto update: ' . (g:ctags_auto_update ? 'ON' : 'OFF')
+endfunction
+
+command! CtagsUpdate call <SID>RebuildTags()
+command! CtagsAutoToggle call <SID>CtagsAutoToggle()
+
+augroup dotfiles_ctags
+  autocmd!
+  autocmd BufWritePost * call <SID>CtagsMaybeAutoUpdate()
+  autocmd VimEnter * call <SID>CtagsMaybeAutoUpdate()
+augroup END
+
 " Plugin shortcuts (safe if plugin isn't loaded)
 nnoremap <silent> <leader>fe :silent! NERDTreeToggle<CR>
 nnoremap <silent> <leader><space> :call <SID>FzfOrWarn('Files')<CR>
@@ -55,4 +166,7 @@ nnoremap <silent> <leader>, :call <SID>FzfOrWarn('Buffers')<CR>
 nnoremap <silent> <leader>sg :call <SID>GitTrackedSearch()<CR>
 nnoremap <silent> <leader>/ :call <SID>FzfOrWarn('BLines')<CR>
 nnoremap <silent> <leader>sG :call <SID>FzfOrWarn('Rg')<CR>
+nnoremap <silent> <leader>st :call <SID>TagsOrWarn()<CR>
+nnoremap <silent> <leader>ct :call <SID>RebuildTags()<CR>
+nnoremap <silent> <leader>cT :call <SID>CtagsAutoToggle()<CR>
 

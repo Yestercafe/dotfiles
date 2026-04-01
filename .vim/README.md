@@ -71,6 +71,34 @@ git submodule update --init --recursive
 git submodule update --remote --merge
 ```
 
+## ctags 使用（可选自动触发）
+
+本配置不依赖额外插件，直接基于 `ctags` + `fzf.vim` 的 `:Tags` 工作。
+
+建议安装 Universal Ctags（含 `readtags`，可提升 `:Tags PREFIX` 体验）：
+
+```bash
+brew install universal-ctags
+```
+
+### 日常用法
+
+- 手动重建 tags：`<leader>ct` 或 `:CtagsUpdate`
+- 打开 tags 检索（fzf）：`:Tags`
+- 开关自动更新（默认关闭）：`<leader>cT` 或 `:CtagsAutoToggle`
+  - 开启后会在 `VimEnter` 和 `BufWritePost` 触发更新，并带节流避免频繁重建
+- 原生跳转：`<C-]>` 跳到定义，`<C-t>` 返回
+
+### 忽略目录策略
+
+默认会忽略常见大目录，减少噪音和索引耗时：`.git`、`node_modules`、`dist`、`build`、`target`、`.next`、`.cache`、`__pycache__`、`.venv`、`vendor`。
+
+### 故障排查
+
+- 提示 `ctags not found`：确认 `ctags` 在 `PATH` 中（`ctags --version`）。
+- `:Tags` 无结果：先执行一次 `<leader>tu`，并确认当前项目根目录下存在 `tags` 文件。
+- 索引过慢：保持自动更新关闭，仅在需要时手动更新，或继续精简忽略目录。
+
 ## 默认快捷键（leader = 空格）
 
 - `<leader>w` 保存
@@ -81,5 +109,9 @@ git submodule update --remote --merge
 - `<leader>sg` 在当前工程的 Git 跟踪文件中搜索（弹出 `GitGrep>` 输入后执行 `git grep`）
 - `<leader>/` 当前文件内容搜索（`:BLines`）
 - `<leader>sG` 全局内容搜索（`:Rg`，需要本机有 `rg`）
+- `<leader>st` tags 检索（`:Tags`，需要本机有 `ctags`）
+- `:Tags` tags 检索（需要本机有 `ctags`）
+- `<leader>ct` 手动重建 tags（`:CtagsUpdate`）
+- `<leader>cT` 切换 tags 自动更新（`:CtagsAutoToggle`，默认关闭）
 - `<leader>F` 文件搜索（`:Files`，兼容保留）
 
