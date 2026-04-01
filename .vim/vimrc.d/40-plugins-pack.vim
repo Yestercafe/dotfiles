@@ -35,6 +35,16 @@ function! s:FzfOrWarn(cmd) abort
   endif
 endfunction
 
+function! s:BLinesWithPreview() abort
+  if !s:FzfReady()
+    echohl WarningMsg
+    echom "fzf not ready: install submodule junegunn/fzf and run its install script."
+    echohl None
+    return
+  endif
+  call fzf#vim#buffer_lines('', fzf#vim#with_preview({'placeholder': '{2..}'}), 0)
+endfunction
+
 function! s:GitTrackedSearch() abort
   if !s:FzfReady()
     echohl WarningMsg
@@ -137,18 +147,6 @@ function! s:TagsOrWarn() abort
   call s:FzfOrWarn('Tags')
 endfunction
 
-let s:smart_tag_candidates = []
-
-function! s:SmartTagFzfSink(line) abort
-  let l:idx = str2nr(matchstr(a:line, '^\s*\zs\d\+')) - 1
-  if l:idx < 0 || l:idx >= len(s:smart_tag_candidates)
-    return
-  endif
-
-  let l:item = s:smart_tag_candidates[l:idx]
-  execute 'tag ' . l:item.name
-endfunction
-
 function! s:SmartTagJump() abort
   let l:sym = expand('<cword>')
   if empty(l:sym)
@@ -174,20 +172,7 @@ function! s:SmartTagJump() abort
     return
   endif
 
-  let s:smart_tag_candidates = l:matches
-  let l:source = []
-  for l:i in range(len(l:matches))
-    let l:item = l:matches[l:i]
-    let l:file = fnamemodify(get(l:item, 'filename', ''), ':~:.')
-    let l:cmd = substitute(get(l:item, 'cmd', ''), '^[/?]\|[/?]$', '', 'g')
-    call add(l:source, printf('%3d %s [%s] %s', l:i + 1, get(l:item, 'name', l:sym), l:file, l:cmd))
-  endfor
-
-  call fzf#run(fzf#wrap({
-        \ 'source': l:source,
-        \ 'sink': function('s:SmartTagFzfSink'),
-        \ 'options': '--prompt "TagSelect> " --ansi'
-        \ }))
+  call fzf#vim#tags(l:sym, fzf#vim#with_preview({ "placeholder": "--tag {2}:{-1}:{3..}" }), 0)
 endfunction
 
 let g:ctags_auto_update = get(g:, 'ctags_auto_update', 0)
@@ -230,7 +215,7 @@ nnoremap <silent> <leader>fe :silent! NERDTreeToggle<CR>
 nnoremap <silent> <leader><space> :call <SID>FzfOrWarn('Files')<CR>
 nnoremap <silent> <leader>, :call <SID>FzfOrWarn('Buffers')<CR>
 nnoremap <silent> <leader>sg :call <SID>GitTrackedSearch()<CR>
-nnoremap <silent> <leader>/ :call <SID>FzfOrWarn('BLines')<CR>
+nnoremap <silent> <leader>/ :call <SID>BLinesWithPreview()<CR>
 nnoremap <silent> <leader>sG :call <SID>FzfOrWarn('Rg')<CR>
 nnoremap <silent> <leader>st :call <SID>TagsOrWarn()<CR>
 nnoremap <silent> <leader>ct :call <SID>RebuildTags()<CR>
