@@ -7,6 +7,48 @@ filetype plugin indent on
 
 syntax on
 
+" Colors: keep a stable dark palette across terminal/Vim variants.
+if has('termguicolors')
+  set termguicolors
+endif
+set background=dark
+silent! colorscheme habamax
+if !exists('g:colors_name') || g:colors_name !=# 'habamax'
+  silent! colorscheme desert
+endif
+
+" Keep transparent background while preserving habamax foreground colors.
+function! s:ApplyTransparentBackground() abort
+  highlight Normal guibg=NONE ctermbg=NONE
+  highlight NormalNC guibg=NONE ctermbg=NONE
+  highlight SignColumn guibg=NONE ctermbg=NONE
+  highlight EndOfBuffer guibg=NONE ctermbg=NONE
+  highlight FoldColumn guibg=NONE ctermbg=NONE
+  highlight LineNr guibg=NONE ctermbg=NONE
+  highlight CursorLineNr guibg=NONE ctermbg=NONE
+  highlight NonText guibg=NONE ctermbg=NONE
+  highlight VertSplit guibg=NONE ctermbg=NONE
+  highlight StatusLine guibg=NONE ctermbg=NONE
+  highlight StatusLineNC guibg=NONE ctermbg=NONE
+
+  " Airline: keep same palette family but transparent background.
+  highlight airline_a guibg=NONE ctermbg=NONE
+  highlight airline_b guibg=NONE ctermbg=NONE
+  highlight airline_c guibg=NONE ctermbg=NONE
+  highlight airline_x guibg=NONE ctermbg=NONE
+  highlight airline_y guibg=NONE ctermbg=NONE
+  highlight airline_z guibg=NONE ctermbg=NONE
+  highlight airline_a_inactive guibg=NONE ctermbg=NONE
+  highlight airline_b_inactive guibg=NONE ctermbg=NONE
+  highlight airline_c_inactive guibg=NONE ctermbg=NONE
+endfunction
+
+augroup dotfiles_transparent_theme
+  autocmd!
+  autocmd ColorScheme * call <SID>ApplyTransparentBackground()
+  autocmd VimEnter * call <SID>ApplyTransparentBackground()
+augroup END
+
 " Encoding
 set encoding=utf-8
 set fileencodings=utf-8,gb18030

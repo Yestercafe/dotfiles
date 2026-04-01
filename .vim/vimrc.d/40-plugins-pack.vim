@@ -17,6 +17,9 @@ set noswapfile
 " Keep gitgutter stable
 set signcolumn=yes
 
+" Match airline palette with habamax-style UI.
+let g:airline_theme = 'habamax'
+
 " fzf.vim depends on junegunn/fzf (fzf#run).
 function! s:FzfReady() abort
   return exists('*fzf#run')
