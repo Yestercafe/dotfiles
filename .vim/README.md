@@ -114,5 +114,6 @@ brew install universal-ctags
 - `<leader>st` tags 检索（`:Tags`，需要本机有 `ctags`）
 - `<leader>ct` 手动重建 tags（`:CtagsUpdate`）
 - `<leader>cT` 切换 tags 自动更新（`:CtagsAutoToggle`，默认关闭）
+- `<C-]>` 智能跳转：单结果直接跳，多结果用 fzf 选择（无 fzf 时回退 `:tselect`）
 - `<leader>F` 文件搜索（`:Files`，兼容保留）
 

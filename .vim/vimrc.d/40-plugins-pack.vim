@@ -137,6 +137,59 @@ function! s:TagsOrWarn() abort
   call s:FzfOrWarn('Tags')
 endfunction
 
+let s:smart_tag_candidates = []
+
+function! s:SmartTagFzfSink(line) abort
+  let l:idx = str2nr(matchstr(a:line, '^\s*\zs\d\+')) - 1
+  if l:idx < 0 || l:idx >= len(s:smart_tag_candidates)
+    return
+  endif
+
+  let l:item = s:smart_tag_candidates[l:idx]
+  execute 'tag ' . l:item.name
+endfunction
+
+function! s:SmartTagJump() abort
+  let l:sym = expand('<cword>')
+  if empty(l:sym)
+    return
+  endif
+
+  let l:pat = '^' . escape(l:sym, '\.^$~[]*') . '$'
+  let l:matches = taglist(l:pat)
+  if empty(l:matches)
+    echohl WarningMsg
+    echom 'no tag found for: ' . l:sym
+    echohl None
+    return
+  endif
+
+  if len(l:matches) == 1
+    execute 'tag ' . l:sym
+    return
+  endif
+
+  if !s:FzfReady()
+    execute 'tselect ' . l:sym
+    return
+  endif
+
+  let s:smart_tag_candidates = l:matches
+  let l:source = []
+  for l:i in range(len(l:matches))
+    let l:item = l:matches[l:i]
+    let l:file = fnamemodify(get(l:item, 'filename', ''), ':~:.')
+    let l:cmd = substitute(get(l:item, 'cmd', ''), '^[/?]\|[/?]$', '', 'g')
+    call add(l:source, printf('%3d %s [%s] %s', l:i + 1, get(l:item, 'name', l:sym), l:file, l:cmd))
+  endfor
+
+  call fzf#run(fzf#wrap({
+        \ 'source': l:source,
+        \ 'sink': function('s:SmartTagFzfSink'),
+        \ 'options': '--prompt "TagSelect> " --ansi'
+        \ }))
+endfunction
+
 let g:ctags_auto_update = get(g:, 'ctags_auto_update', 0)
 let s:ctags_last_update_at = reltime()
 let s:ctags_min_interval_sec = 5
@@ -182,4 +235,5 @@ nnoremap <silent> <leader>sG :call <SID>FzfOrWarn('Rg')<CR>
 nnoremap <silent> <leader>st :call <SID>TagsOrWarn()<CR>
 nnoremap <silent> <leader>ct :call <SID>RebuildTags()<CR>
 nnoremap <silent> <leader>cT :call <SID>CtagsAutoToggle()<CR>
+nnoremap <silent> <C-]> :call <SID>SmartTagJump()<CR>
 
