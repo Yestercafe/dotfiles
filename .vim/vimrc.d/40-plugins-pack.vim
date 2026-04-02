@@ -215,8 +215,27 @@ augroup dotfiles_ctags
   autocmd VimEnter * call <SID>CtagsMaybeAutoUpdate()
 augroup END
 
+" NERDTree：<leader>fd 当前文件所在目录，<leader>fe 版本库根目录（.git/.hg/…）
+function! s:NERDTreeToggleFileDir() abort
+  let l:dir = expand('%:p:h')
+  if empty(l:dir) || !isdirectory(l:dir)
+    let l:dir = getcwd()
+  endif
+  silent! execute 'NERDTreeToggle ' . fnameescape(fnamemodify(l:dir, ':p'))
+endfunction
+
+function! s:NERDTreeToggleProject() abort
+  let l:ref = expand('%:p')
+  if empty(l:ref)
+    silent! NERDTreeToggleVCS
+  else
+    silent! execute 'NERDTreeToggleVCS ' . fnameescape(l:ref)
+  endif
+endfunction
+
 " Plugin shortcuts (safe if plugin isn't loaded)
-nnoremap <silent> <leader>fe :silent! NERDTreeToggle<CR>
+nnoremap <silent> <leader>fd :call <SID>NERDTreeToggleFileDir()<CR>
+nnoremap <silent> <leader>fe :call <SID>NERDTreeToggleProject()<CR>
 nnoremap <silent> <leader><space> :call <SID>FzfOrWarn('Files')<CR>
 nnoremap <silent> <leader>, :call <SID>FzfOrWarn('Buffers')<CR>
 nnoremap <silent> <leader>sg :call <SID>GitTrackedSearch()<CR>

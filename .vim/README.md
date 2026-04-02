@@ -105,7 +105,8 @@ brew install universal-ctags
 
 - `<leader>w` 保存
 - `<leader>q` 退出
-- `<leader>fe` 切换 NERDTree
+- `<leader>fd` 切换 NERDTree（根目录为当前文件所在目录）
+- `<leader>fe` 切换 NERDTree（根目录为版本库根目录，如 `.git` 上级；无缓冲路径时用当前工作目录）
 - `<leader><space>` 文件搜索（`:Files`）
 - `<leader>,` Buffer 搜索（`:Buffers`）
 - `<leader>sg` 在当前工程的 Git 跟踪文件中搜索（弹出 `GitGrep>` 输入后执行 `git grep`）
