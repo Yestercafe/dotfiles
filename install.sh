@@ -8,6 +8,8 @@ ALACRITTY_PATH=$CONFIG/alacritty
 KITTY_PATH=$CONFIG/kitty
 WEZTERM_PATH=$CONFIG/wezterm
 HELIX_PATH=$CONFIG/helix
+GHOSTTY_PATH=$CONFIG/ghostty
+HERDR_PATH=$CONFIG/herdr
 
 OS=$(uname -s)
 
@@ -199,6 +201,10 @@ done_dotfiles() {
     ln -sf $DOTFILES/kitty.conf $KITTY_PATH/kitty.conf
     mkdir -p $HELIX_PATH
     ln -sf $DOTFILES/helix.toml $HELIX_PATH/config.toml
+    mkdir -p $GHOSTTY_PATH
+    ln -sf $DOTFILES/ghostty.conf $GHOSTTY_PATH/config
+    mkdir -p $HERDR_PATH
+    ln -sf $DOTFILES/herdr.toml $HERDR_PATH/config.toml
     ln -sf $DOTFILES/starship.toml $CONFIG/
 
     echo "- Done!"

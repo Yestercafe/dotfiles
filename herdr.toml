@@ -1,0 +1,46 @@
+onboarding = false
+
+[keys]
+prefix = "ctrl+x"
+
+# ── tmux-style bindings ─────────────────────────────────────────────
+# 窗口/Tab（对应 tmux window）
+new_tab           = "prefix+c"
+close_tab         = "prefix+&"           # shift+7
+rename_tab        = "prefix+comma"       # ,
+previous_tab      = "prefix+p"
+next_tab          = "prefix+n"
+switch_tab        = "prefix+1..9"
+move_tab_previous = "prefix+{"           # shift+left_bracket
+move_tab_next     = "prefix+}"           # shift+right_bracket
+
+# 工作区/Session（对应 tmux session）
+rename_workspace  = "prefix+$"           # shift+4
+close_workspace   = "prefix+shift+d"
+workspace_picker  = "prefix+w"
+
+# Pane 分割与导航（对应 tmux pane）
+split_vertical    = "prefix+%"           # shift+5
+split_horizontal  = "prefix+double_quote" # "
+focus_pane_left   = "prefix+h"
+focus_pane_down   = "prefix+j"
+focus_pane_up     = "prefix+k"
+focus_pane_right  = "prefix+l"
+close_pane        = "prefix+x"
+zoom              = "prefix+z"
+last_pane         = "prefix+semicolon"   # ;
+
+# 其他常用 tmux 键位
+detach            = "prefix+d"
+reload_config     = "prefix+r"
+help              = "prefix+?"
+goto              = "prefix+g"
+
+# Resize mode：保留但改绑，避免和 reload_config 冲突
+resize_mode       = "prefix+shift+r"
+
+# 保持默认的 navigate-mode hjkl
+navigate_pane_left  = "h"
+navigate_pane_down  = "j"
+navigate_pane_up    = "k"
+navigate_pane_right = "l"
